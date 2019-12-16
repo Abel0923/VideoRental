@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	  <link rel="stylesheet" href="../../../../resources/static/vendors/mdi/css/materialdesignicons.min.css">
-	    <link rel="stylesheet" href="../../../../resources/static/css/style.css">
-          <link href="../../../../resources/static/css/font-awesome.css" rel="stylesheet">
-                    <style type="text/css">
-                .active{
+  <title></title>
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/other_style.css"/>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+          
+          <style type="text/css">
+                 .active li{
                     background-color: #f3f3f3;
                  }
           </style>
 </head>
 <body>
   <div class="container-scroller">
-  	<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
           <a class="navbar-brand brand-logo" href="index.html">
-              <img src="../../../../resources/static/images/logo.svg" alt="logo"/>
+              <img src="images/logo.svg" alt="logo"/>
             </a>
         </div>  
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
-            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                href="../../index.html">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" 
+                href="index.html">
               <i class="mdi mdi-logout text-primary mx-0"></i>
               Log out
             </a>
@@ -42,50 +45,49 @@
 
       <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="home.html">
-              <i class="mdi mdi-home menu-icon"></i>
-              <span class="menu-title">Home</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-video.html">
-              <i class="fa fa-film menu-icon"></i>
-              <span class="menu-title">Add Videos</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              <i class="mdi mdi-account-multiple menu-icon"></i>
-              <span class="menu-title">List Of Customers</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="list-rented.html">
-              <i class="mdi mdi-film menu-icon"></i>
-              <span class="menu-title">Rented Videos</span>
-            </a>
-          </li>
-  
-        </ul>
-      </nav>
+          <nav class="sidebar sidebar-offcanvas" id="sidebar">
+              <ul class="nav">
+                  <li class="nav-item active-home">
+                      <a class="nav-link" href="/admin/home">
+                          <i class="mdi mdi-home menu-icon"></i>
+                          <span class="menu-title">Home</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/admin/addVideo">
+                          <i class="fa fa-film menu-icon"></i>
+                          <span class="menu-title">Add Videos</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/admin/list/customers">
+                          <i class="mdi mdi-account-multiple menu-icon"></i>
+                          <span class="menu-title">List Of Customers</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/admin/list/rented">
+                          <i class="mdi mdi-film menu-icon"></i>
+                          <span class="menu-title">Rented Videos</span>
+                      </a>
+                  </li>
+
+              </ul>
+          </nav>
         
         
         
       <!-- partial -->
 <div class="main-panel">
   <div class="content-wrapper">      
-  <!--              overview card   -->
-  
+    
     <div class="card">
     <!--            table       -->
           <div class="row">
             <div class="col-md-12 stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Customer</p>
+                  <p class="card-title">Rented Videos</p>
                   <div class="table-responsive">
                     <table id="recent-purchases-listing" class="table">
                       <thead>
@@ -116,8 +118,9 @@
     </div>
   </div>
 </div>
-  <script src="../../../../resources/static/vendors/base/vendor.bundle.base.js"></script>
-  <script src="../../../../resources/static/js/dashboard.js"></script>
-  <script src="../../../../resources/static/js/jquery.dataTables.js"></script>
+  <script src="vendors/base/vendor.bundle.base.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/jquery.dataTables.js"></script>
+      </div>
 </body>
 </html>

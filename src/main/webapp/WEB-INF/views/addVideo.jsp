@@ -2,18 +2,19 @@
 <html>
 <head>
     <title>Video Detail</title>
-    <link rel="stylesheet" href="../../../../resources/static/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../../resources/static/css/style.css">
-    <link href="../../../../resources/static/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../../../resources/static/css/other_style.css"/>
-    <script type="text/javascript" src="../../js/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="../../../../resources/static/vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/other_style.css"/>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
 
-    <link rel="stylesheet" href="../../../../resources/static/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../../resources/static/vendors/base/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../../../resources/static/css/style.css">
+    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
+
+
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <style type="text/css">
         .menu-film-list{
@@ -31,7 +32,7 @@
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
           <a class="navbar-brand brand-logo" href="index.html">
-              <img src="../../../../resources/static/images/logo.svg" alt="logo"/>
+              <img src="images/logo.svg" alt="logo"/>
             </a>
         </div>  
       </div>
@@ -39,7 +40,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" 
-                href="../../index.html">
+                href="index.html">
               <i class="mdi mdi-logout text-primary mx-0"></i>
               Log out
             </a>
@@ -57,34 +58,36 @@
 <div class="container-fluid page-body-wrapper">
 
     <!-- side bar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="home.html">
-              <i class="mdi mdi-home menu-icon"></i>
-              <span class="menu-title">Home</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
-              <i class="fa fa-film menu-icon"></i>
-              <span class="menu-title">Add Videos</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="list-customers.html">
-              <i class="mdi mdi-account-multiple menu-icon"></i>
-              <span class="menu-title">List Of Customers</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="list-rented.html">
-              <i class="mdi mdi-film menu-icon"></i>
-              <span class="menu-title">Rented Videos</span>
-            </a>
-          </li>
+            <li class="nav-item active-home">
+                <a class="nav-link" href="/admin/home">
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/addVideo">
+                    <i class="fa fa-film menu-icon"></i>
+                    <span class="menu-title">Add Videos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/list/customers">
+                    <i class="mdi mdi-account-multiple menu-icon"></i>
+                    <span class="menu-title">List Of Customers</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/list/rented">
+                    <i class="mdi mdi-film menu-icon"></i>
+                    <span class="menu-title">Rented Videos</span>
+                </a>
+            </li>
+
         </ul>
-      </nav>
+    </nav>
+
 
     <!-- partial -->
     <div class="main-panel">
@@ -158,11 +161,11 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../../../../resources/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-    <script src="../../../../resources/static/vendors/base/vendor.bundle.base.js"></script>
-    <script src="../../../../resources/static/js/off-canvas.js"></script>
-    <script src="../../../../resources/static/js/hoverable-collapse.js"></script>
-    <script src="../../../../resources/static/js/template.js"></script>
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
 </body>
 </html>
