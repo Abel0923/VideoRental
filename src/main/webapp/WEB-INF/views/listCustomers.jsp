@@ -2,12 +2,9 @@
 <html>
 <head>
 	<title></title>
-    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/other_style.css"/>
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-
+	  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+	    <link rel="stylesheet" href="css/style.css">
+          <link href="css/font-awesome.css" rel="stylesheet">
                     <style type="text/css">
                 .active{
                     background-color: #f3f3f3;
@@ -18,17 +15,17 @@
   <div class="container-scroller">
   	<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
-        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
           <a class="navbar-brand brand-logo" href="index.html">
               <img src="images/logo.svg" alt="logo"/>
             </a>
-        </div>  
+        </div>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                href="index.html">
+                href="../../index.html">
               <i class="mdi mdi-logout text-primary mx-0"></i>
               Log out
             </a>
@@ -47,31 +44,30 @@
       <!-- partial:partials/_sidebar.html -->
           <nav class="sidebar sidebar-offcanvas" id="sidebar">
               <ul class="nav">
-                  <li class="nav-item active-home">
-                      <a class="nav-link" href="/admin/home">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/admin">
                           <i class="mdi mdi-home menu-icon"></i>
                           <span class="menu-title">Home</span>
                       </a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/admin/addVideo">
+                  <li class="nav-item active">
+                      <a class="nav-link" data-toggle="collapse" href="/admin_add_videos" aria-expanded="false" aria-controls="ui-basic">
                           <i class="fa fa-film menu-icon"></i>
                           <span class="menu-title">Add Videos</span>
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/admin/list/customers">
+                      <a class="nav-link" href="/admin_list_customers">
                           <i class="mdi mdi-account-multiple menu-icon"></i>
                           <span class="menu-title">List Of Customers</span>
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/admin/list/rented">
+                      <a class="nav-link" href="/admin_list_rented">
                           <i class="mdi mdi-film menu-icon"></i>
                           <span class="menu-title">Rented Videos</span>
                       </a>
                   </li>
-
               </ul>
           </nav>
         
@@ -122,6 +118,5 @@
   <script src="vendors/base/vendor.bundle.base.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/jquery.dataTables.js"></script>
-      </div>
 </body>
 </html>

@@ -5,24 +5,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminController {
 
-    @GetMapping("/home")
+    @GetMapping("/admin_home")
     public String adminHome(){
-        return "homeAdmin";
+        return "adminHome";
     }
 
-    @GetMapping("/addVideo")
-    public String addVideo(){
+    @GetMapping("/admin_add_videos")
+    public String addVideos(){
         return "addVideo";
     }
-    @GetMapping("/list/customers")
+
+    @GetMapping("/admin_list_customers")
     public String listCustomers(){
         return "listCustomers";
     }
-    @GetMapping("/list/rented")
+    @GetMapping("/admin_list_rented")
     public String listRented(){
         return "listRented";
     }
+
 }
