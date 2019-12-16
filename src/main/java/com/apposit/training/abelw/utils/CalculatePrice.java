@@ -1,10 +1,12 @@
 package com.apposit.training.abelw.utils;
 
 import com.apposit.training.abelw.data.VideoByTypeDto;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class CalculatePrice {
 
     List<VideoByTypeDto> cartValue;

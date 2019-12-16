@@ -28,7 +28,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 			System.out.println("Can't redirect");
 			return;
 		}
-		System.out.println("REDIRECT STRATEGIY req : " + request + " resp: " + response +" target url: " + targetUrl);
 
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
@@ -49,7 +48,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		}
 
 		if (isAdmin(roles)) {
-			url = "/admin";
+			url = "/admin/home";
 		} else if (isUser(roles)) {
 			url = "/";
 		} else {
