@@ -2,10 +2,6 @@ package com.apposit.training.abelw.data;
 
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
-import org.hibernate.annotations.Tables;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
 
 public class VideoByTypeDto {
 
@@ -34,9 +30,6 @@ public class VideoByTypeDto {
         this.year = year;
         this.price = price;
         this.onOfDays = onOfDays;
-    }
-
-    public VideoByTypeDto() {
     }
 
     public Long getVideoId() {

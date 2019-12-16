@@ -1,8 +1,6 @@
 package com.apposit.training.abelw.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,12 +11,10 @@ public class VideoType implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN", initialValue=205, allocationSize=1)
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="seq-gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @NotBlank(message = "Title can not be Empty")
     @Column(name = "type_title")
     private String type_title;
 
