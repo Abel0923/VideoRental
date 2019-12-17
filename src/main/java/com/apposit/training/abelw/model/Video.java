@@ -4,6 +4,9 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -16,7 +19,8 @@ public class Video implements Serializable {
     @Column(name = "id")
     private Long id;
 
-
+    @NotBlank(message = "Title can not be Empty")
+    @Size(min = 1, message = "Title text size can not be less than 2")
     @Column(name = "title")
     public  String title;
 
@@ -32,10 +36,10 @@ public class Video implements Serializable {
     private VideoGenre genre;
 
     @Column(name = "age")
-    private  String age;
+    private  String age ="0";
 
     @Column(name = "year")
-    private  String year;
+    private  String year="0";
 
     public Video() {
     }

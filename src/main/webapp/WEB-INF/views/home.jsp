@@ -12,70 +12,22 @@
 
     <style type="text/css">
         .carousel-inner .carousel-item img {
-            height: 16rem;
+            height: 18rem;
         }
     </style>
 
 </head>
 <body>
 
-<div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="navbar-brand-wrapper d-flex justify-content-center">
-            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                <a class="navbar-brand brand-logo" href="index.html">
-                    <img src="images/logo.svg" alt="logo"/>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-            <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown mr-1">
-                    <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                       href="/login">
-                        <i class="mdi mdi-login text-primary mx-0"></i>
-                        Log In
-                    </a>
-                </li>
-                <li class="nav-item dropdown mr-1">
-                    <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                       href="/cart">
-                        <i class="mdi mdi-cart text-primary mx-0"></i>
-                        Cart
-                    </a>
-                </li>
-                <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                       href="#" data-toggle="dropdown">
-                        <i class="mdi mdi-account-circle"></i>
-                        <span class="nav-profile-name">Louis Barnett</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<div>
+    <%@ include file="user_header.jsp"%>
 </div>
 
 <div class="container-fluid page-body-wrapper">
 
-    <!-- side bar -->
-    <nav class="sidebar sidebar-offcanvas" style="position: fixed;" id="sidebar">
-        <ul class="nav">
-            <h3 align="center">Movie Types</h3>
-            <li class="nav-item">
-                <a class="nav-link" methods="post" href="/">
-                    <span class="menu-title">All</span>
-                </a>
-            </li>
-            <c:forEach items="${genre}" var="genre">
-            <li class="nav-item">
-                <a class="nav-link" methods="post" href="/genre/${genre.id}">
-                    <span class="menu-title">${genre.title}</span>
-                </a>
-            </li>
-            </c:forEach>
-        </ul>
-    </nav>
+    <div>
+        <%@ include file="user_nav_bar.jsp"%>
+    </div>
 
     <!-- partial -->
     <div class="main-panel" style="margin-left: 18%; ">
@@ -90,13 +42,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="images/film8.png" alt="First slide">
+                        <img class="d-block w-100" src="images/Avengers.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="images/film4.png" alt="Second slide">
+                        <img class="d-block w-100" src="images/Joker.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="images/film5.png" alt="Third slide">
+                        <img class="d-block w-100" src="images/Spider.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -73,7 +73,7 @@ public class HomeController {
 
     @GetMapping("/cart")
     public String getCart(Model model, HttpServletRequest request){
-        model.addAttribute("total_price", calculatePrice.calculatedPrice());
+        model.addAttribute("total_price", calculatePrice.calculatedPrice(cart));
         model.addAttribute("genre", videoService.findAllGenre());
         request.getSession().getAttribute("MY_CART");
         return "cart";
