@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,11 +8,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="css/font-awesome.css" rel="stylesheet">
 
-    <style type="text/css">
-        .active li {
-            background-color: #f3f3f3;
-        }
-    </style>
 </head>
 <body>
 <div>
@@ -24,10 +21,10 @@
         <%@ include file="admin_nav_bar.jsp" %>
     </div>
 
-
     <!-- partial -->
     <div class="main-panel">
         <div class="content-wrapper">
+            <!--              overview card   -->
 
             <div class="card">
                 <!--            table       -->
@@ -35,7 +32,7 @@
                     <div class="col-md-12 stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-title">Rented Videos</p>
+                                <p class="card-title">Customer</p>
                                 <div class="table-responsive">
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>
@@ -44,17 +41,24 @@
                                             <th>Category</th>
                                             <th>Genre</th>
                                             <th>Price</th>
-                                            <th>Uploaded Date</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Jeremy Ortega</td>
-                                            <td>Levelled up</td>
-                                            <td>Catalinaborough</td>
-                                            <td>$790</td>
-                                            <td>06 Jan 2018</td>
-                                        </tr>
+                                        <c:forEach items="${videos}" var="video">
+                                            <tr>
+                                                <td>${video.videoTitle}</td>
+                                                <td>${video.videoType.type_title}</td>
+                                                <td>${video.videoGenre.title}</td>
+                                                <td>${video.price}</td>
+                                                <td>
+                                                    <a href="/delete_video/${video.videoId}" class="btn btn-outline-danger">
+                                                        <i class="mdi mdi-delete"></i>
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -69,6 +73,5 @@
     <script src="vendors/base/vendor.bundle.base.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/jquery.dataTables.js"></script>
-</div>
 </body>
 </html>

@@ -21,4 +21,5 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
      List<VideoByTypeDto> fetchVideoId(long id);
 
     Video findVideoById(long id);
+
 }

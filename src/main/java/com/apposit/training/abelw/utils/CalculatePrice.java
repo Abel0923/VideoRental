@@ -9,18 +9,13 @@ import java.util.List;
 @Component
 public class CalculatePrice {
 
-    List<VideoByTypeDto> cartValue;
     Double totalPrice = 0.0;
     int days = 1;
     Double rate = 0.0;
     Double ageValue = 0.0;
     int year = 0;
 
-    public CalculatePrice(List<VideoByTypeDto> cartValue) {
-        this.cartValue = cartValue;
-    }
-
-    public Double calculatedPrice(){
+    public Double calculatedPrice(List<VideoByTypeDto> cartValue){
         for (VideoByTypeDto video :cartValue) {
              this.rate = video.getPrice();
              if (video.getVideoType().getType_title().equalsIgnoreCase("CHILDREN") && video.getAge() != null){
