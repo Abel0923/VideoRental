@@ -28,12 +28,20 @@
 <nav class="sidebar sidebar-offcanvas" style="position: fixed;" id="sidebar">
 
     <ul class="nav">
-        <h3 align="center">Movie Types</h3>
         <li class="nav-item">
             <a class="nav-link" methods="post" href="/user/">
                 <span class="menu-title">All</span>
             </a>
         </li>
+        <h5 align="center"><u>Movie Category / Type</u></h5>
+        <c:forEach items="${type}" var="type">
+            <li class="nav-item">
+                <a class="nav-link" methods="post" href="/user/type/${type.id}">
+                    <span class="menu-title">${type.type_title}</span>
+                </a>
+            </li>
+        </c:forEach>
+        <h5 align="center"><u>Movie Genre</u></h5>
         <c:forEach items="${genre}" var="genre">
             <li class="nav-item">
                 <a class="nav-link" methods="post" href="/user/genre/${genre.id}">

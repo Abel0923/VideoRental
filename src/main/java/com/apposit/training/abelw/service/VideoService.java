@@ -56,6 +56,9 @@ public class VideoService {
         return genreRepository.findAll();
     }
 
+    public List<VideoType> findAllType() {
+        return videoTypeRepository.findAll();
+    }
     public List<VideoType> findAllVideoType(){
         return videoTypeRepository.findAll();
     }
@@ -78,5 +81,12 @@ public class VideoService {
     public void deleteVideo(Long id){
         videoRepository.deleteById(id);
         videos.removeIf(x -> x.getVideoId() == id);
+    }
+
+    public void fetchDataByType(int type) {
+        this.videos.clear();
+        videos.addAll(videoRepository.fetchEmpDeptDataInnerJoin());
+        setVideos(videos.stream().filter(videoByTypeDto -> videoByTypeDto.getVideoType().getId() == type)
+                .collect(Collectors.toList()));
     }
 }

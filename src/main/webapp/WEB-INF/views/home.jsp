@@ -48,7 +48,7 @@
                             <li style="float: left;">
                                 <a href="video-detail.html">
                                     <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="/images/film3.png" alt="Card image cap">
+                                        <img class="card-img-top" src="/images/Spider.jpg" style=" height: 180px;" alt="Card image cap">
                                         <div class="card-body">
                                             <b class="card-title">${video.videoTitle}</b>
                                             <p class="card-text card-small">
@@ -83,6 +83,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </body>
 </html>

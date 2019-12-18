@@ -35,6 +35,7 @@ public class HomeController {
 
         model.addAttribute("videos", videoService.getVideos());
         model.addAttribute("genre", videoService.findAllGenre());
+        model.addAttribute("type", videoService.findAllType());
 
         @SuppressWarnings("unchecked")
         List<VideoByTypeDto> cart = (List<VideoByTypeDto>) session.getAttribute("MY_CART");
@@ -46,9 +47,14 @@ public class HomeController {
 
         return "home";
     }
-    @GetMapping("/genre/{type}")
-    public String video(@PathVariable("type") long genre, Model model){
+    @GetMapping("/genre/{genre}")
+    public String videoByGenre(@PathVariable("genre") long genre, Model model){
         videoService.fetchDataByGenre(genre);
+        return "redirect:/user/home";
+    }
+    @GetMapping("/type/{type}")
+    public String videoByType(@PathVariable("type") int type, Model model){
+        videoService.fetchDataByType(type);
         return "redirect:/user/home";
     }
 
@@ -70,6 +76,8 @@ public class HomeController {
         if (cart!=null)
         model.addAttribute("total_price", new CalculatePrice().calculatedPrice(cart));
         model.addAttribute("genre", videoService.findAllGenre());
+        model.addAttribute("type", videoService.findAllType());
+
         request.getSession().getAttribute("MY_CART");
         return "cart";
     }
