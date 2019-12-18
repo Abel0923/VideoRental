@@ -25,38 +25,39 @@
 <body>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+
         <li class="nav-item">
-            <a class="nav-link active" href="/admin_home">
+            <a class="nav-link" href="/admin/admin_home">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Home</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin_add_videos">
+            <a class="nav-link" href="/admin/admin_add_videos">
                 <i class="fa fa-film menu-icon"></i>
                 <span class="menu-title">Add Videos</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin_add_type">
+            <a class="nav-link" href="/admin/admin_add_type">
                 <i class="fa fa-list-alt menu-icon"></i>
                 <span class="menu-title">Add Category / Type</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin_add_genre">
+            <a class="nav-link" href="/admin/admin_add_genre">
                 <i class="fa fa-film menu-icon"></i>
                 <span class="menu-title">Add Genre</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin_list_videos">
+            <a class="nav-link" href="/admin/admin_list_videos">
                 <i class="mdi mdi-account-multiple menu-icon"></i>
                 <span class="menu-title">List Of Videos</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin_list_rented">
+            <a class="nav-link" href="/admin/admin_list_rented">
                 <i class="mdi mdi-film menu-icon"></i>
                 <span class="menu-title">Rented Videos</span>
             </a>

@@ -17,6 +17,7 @@ import javax.validation.Valid;
 ;
 
 @Controller
+@RequestMapping(value = "/admin")
 public class AdminController {
     @Autowired
     VideoService videoService;
@@ -28,7 +29,6 @@ public class AdminController {
         model.addAttribute("noOfVideos", videoService.getVideos().size());
         return "adminHome";
     }
-
     @GetMapping("/admin_add_videos")
     public String addVideos(Model model){
         model.addAttribute("video", new VideoData());
@@ -36,7 +36,6 @@ public class AdminController {
         model.addAttribute("videoType", videoService.findAllVideoType());
         return "addVideo";
     }
-
     @PostMapping("/add_video")
     public String saveVideo(Model model, @Valid VideoData videoData, BindingResult result){
 
@@ -46,10 +45,10 @@ public class AdminController {
             model.addAttribute("videoType", videoService.findAllVideoType());
             return "addVideo";
         }
-        videoService.addVideos(videoData);
-        return "redirect:/admin_list_videos";
-    }
 
+        videoService.addVideos(videoData);
+        return "redirect:/admin/admin_list_videos";
+    }
     @GetMapping("/admin_list_videos")
     public String listCustomers(Model model){
         model.addAttribute("videos", videoService.getVideos());
@@ -59,7 +58,6 @@ public class AdminController {
     public String listRented(){
         return "listRented";
     }
-
     @GetMapping("admin_add_type")
     public String addType(Model model){
         model.addAttribute("type", new VideoType());
@@ -70,14 +68,13 @@ public class AdminController {
         model.addAttribute("genre", new VideoGenre());
         return "addGenre";
     }
-
     @PostMapping("admin_add_type")
     public String saveType(Model model, @Valid VideoType videoType, BindingResult result){
         if (result.hasErrors()){
             return "addType";
         }
         videoService.saveType(videoType);
-        return "redirect:/admin_home";
+        return "redirect:/admin/admin_home";
     }
     @PostMapping("admin_add_genre")
     public String saveGenre(Model model, @Valid VideoGenre videoGenre, BindingResult result){
@@ -86,13 +83,12 @@ public class AdminController {
             return "addGenre";
         }
         videoService.saveGenre(videoGenre);
-        return "redirect:/admin_home";
+        return "redirect:/admin/admin_home";
     }
-
     @GetMapping("delete_video/{id}")
     public String deleteVideo(@PathVariable("id") Long id){
         videoService.deleteVideo(id);
-        return "redirect:/admin_home";
+        return "redirect:/admin/admin_home";
     }
 
 //    private String getLoggedInUserName(Model model) {

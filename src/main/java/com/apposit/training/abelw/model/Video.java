@@ -36,14 +36,13 @@ public class Video implements Serializable {
     private VideoGenre genre;
 
     @Column(name = "age")
-    private  String age ="0";
+    private  String age;
 
     @Column(name = "year")
-    private  String year="0";
+    private  String year;
 
     public Video() {
     }
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

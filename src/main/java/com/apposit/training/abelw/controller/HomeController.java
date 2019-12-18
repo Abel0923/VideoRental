@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,19 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/user")
 public class HomeController {
 
     List<VideoByTypeDto> cart;
     @Autowired
     VideoService videoService;
 
-    @Autowired
-    CalculatePrice calculatePrice;
 
     @GetMapping("/")
     public String homePage(Model model){
         videoService.fetchData();
-        return "redirect:/home";
+        return "redirect:/user/home";
     }
 
     @GetMapping("/home")
@@ -46,16 +46,10 @@ public class HomeController {
 
         return "home";
     }
-
-    @GetMapping("/login")
-    public String loginPage(){
-        return "login";
-    }
-
     @GetMapping("/genre/{type}")
     public String video(@PathVariable("type") long genre, Model model){
         videoService.fetchDataByGenre(genre);
-        return "redirect:/home";
+        return "redirect:/user/home";
     }
 
     @GetMapping("/cart/{id}")
@@ -68,12 +62,13 @@ public class HomeController {
 
         cart.addAll(videoService.findVideoById(id));
         request.getSession().setAttribute("MY_CART", cart);
-        return "redirect:/home";
+        return "redirect:/user/home";
     }
 
     @GetMapping("/cart")
     public String getCart(Model model, HttpServletRequest request){
-        model.addAttribute("total_price", calculatePrice.calculatedPrice(cart));
+        if (cart!=null)
+        model.addAttribute("total_price", new CalculatePrice().calculatedPrice(cart));
         model.addAttribute("genre", videoService.findAllGenre());
         request.getSession().getAttribute("MY_CART");
         return "cart";
@@ -82,7 +77,7 @@ public class HomeController {
     @GetMapping("/cart/delete/{id}")
     public String deleteItemFromCart(@PathVariable("id") int id){
         cart.removeIf(x -> x.getVideoId()==id);
-        return "redirect:/cart";
+        return "redirect:/user/cart";
     }
 
 }

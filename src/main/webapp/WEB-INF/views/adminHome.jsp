@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Video Detail</title>
-    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/other_style.css"/>
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
-    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
-
-    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="css/font-awesome.css" rel="stylesheet">
-
-    <style type="text/css">
-        .active {
-            background-color: #f3f3f3;
-        }
-    </style>
-
-</head>
-<body>
 <div>
     <%@ include file="admin_header.jsp" %>
 </div>

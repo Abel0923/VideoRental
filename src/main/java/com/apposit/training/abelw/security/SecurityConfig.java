@@ -21,8 +21,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user1").password("{noop}abc123").authorities("ROLE_USER");
-        auth.inMemoryAuthentication().withUser("admin").password("{noop}admin123").authorities("ROLE_ADMIN");
+
+        auth.inMemoryAuthentication()
+                .withUser("user1").password("{noop}abc123").authorities("ROLE_USER")
+                .and()
+                .withUser("admin").password("{noop}admin123").authorities("ROLE_USER","ROLE_ADMIN");
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -35,8 +38,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .anyRequest().authenticated()
+                .antMatchers("/resources/**","/resources/static/**")
+                .permitAll()
                 .and()
                 .formLogin().loginPage("/login")
                 .permitAll()
@@ -45,12 +50,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username").passwordParameter("password")
                 .and()
                 .csrf().disable()
-                .logout().logoutSuccessUrl("/login?logout");
+                .logout().logoutSuccessUrl("/user/");
+
     }
 
 
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return super.userDetailsServiceBean();
-    }
+//    @Override
+//    public UserDetailsService userDetailsServiceBean() throws Exception {
+//        return super.userDetailsServiceBean();
+//    }
 }

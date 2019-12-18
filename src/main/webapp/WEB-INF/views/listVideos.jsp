@@ -1,12 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="/css/font-awesome.css" rel="stylesheet">
 
 </head>
 <body>
@@ -52,7 +51,7 @@
                                                 <td>${video.videoGenre.title}</td>
                                                 <td>${video.price}</td>
                                                 <td>
-                                                    <a href="/delete_video/${video.videoId}" class="btn btn-outline-danger">
+                                                    <a href="/admin/delete_video/${video.videoId}" class="btn btn-outline-danger">
                                                         <i class="mdi mdi-delete"></i>
                                                         Delete
                                                     </a>

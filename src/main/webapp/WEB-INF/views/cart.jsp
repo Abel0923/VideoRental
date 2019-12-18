@@ -1,29 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/other_style.css"/>
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-
-    <style type="text/css">
-        .carousel-inner .carousel-item img {
-            height: 16rem;
-        }
-        .noOfDays{
-            border: none;
-            text-align: center;
-        }
-    </style>
-
-
-</head>
-<body>
-
 <div>
     <%@ include file="user_header.jsp"%>
 </div>
@@ -74,7 +48,7 @@
                                             <i class="mdi mdi-plus-circle add" id="add"></i>
                                         </td>
                                         <td>
-                                            <a href="/cart/delete/${cart.videoId}"><i class="mdi mdi-cart-remove" ></i></a>
+                                            <a href="/user/cart/delete/${cart.videoId}"><i class="mdi mdi-cart-remove" ></i></a>
                                         </td>
                                     </tr>
                                     </c:forEach>

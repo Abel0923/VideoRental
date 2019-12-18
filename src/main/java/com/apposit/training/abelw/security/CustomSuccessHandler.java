@@ -50,14 +50,12 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 
 		if (isAdmin(roles)) {
-			System.out.println("LOGIN USER : " + authentication.getPrincipal());
-			url = "/admin_home";
+			url = "/admin/admin_home";
 		} else if (isUser(roles)) {
-			url = "/";
+			url = "/user/";
 		} else {
 			url = "/accessDenied";
 		}
-		System.out.println("URL .... " + url);
 
 		return url;
 	}
