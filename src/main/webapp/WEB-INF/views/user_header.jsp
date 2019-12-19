@@ -16,14 +16,31 @@
     <link href="/css/font-awesome.css" rel="stylesheet">
 
     <style type="text/css">
-        .menu-film-list{
+        .menu-film-list {
             margin-top: -24px;
         }
-        .active{
+
+        .active {
             background-color: #f3f3f3;
         }
+
         .carousel-inner .carousel-item img {
             height: 16rem;
+        }
+        #ex4 .p1[data-count]:after{
+            position:absolute;
+            right:10%;
+            top:8%;
+            content: attr(data-count);
+            font-size:40%;
+            padding:.2em;
+            border-radius:50%;
+            line-height:1em;
+            color: white;
+            background:rgba(255,0,0,.85);
+            text-align:center;
+            min-width: 1em;
+        //font-weight:bold;
         }
     </style>
 
@@ -48,11 +65,22 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown mr-1">
-                    <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                       href="/user/cart">
-                        <i class="mdi mdi-cart text-primary mx-0"></i>
-                        Cart
-                    </a>
+                    <c:if test="${not empty cart}">
+                        <div id="ex4" class="nav-link">
+                          <span class="p1 fa-stack fa-2x has-badge" data-count="${cart.size()}">
+                            <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                            <i class="mdi mdi-cart fa-stack-1x  text-primary mx-0" data-count="4b"></i>
+                          </span> <a href="/user/cart">Cart</a>
+                        </div>
+                    </c:if>
+                    <c:if test="${empty cart}">
+                        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                           href="/user/cart">
+                            <i class="mdi mdi-cart text-primary mx-0"></i>
+                            Cart
+                        </a>
+                    </c:if>
+
                 </li>
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"

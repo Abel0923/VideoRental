@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "video")
@@ -43,6 +44,9 @@ public class Video implements Serializable {
 
     @Column(name = "image_uri")
     private String image_uri;
+
+    @Column(name = "created_at")
+    private Date created_at;
 
     public Video() {
     }
@@ -105,5 +109,13 @@ public class Video implements Serializable {
 
     public void setImage_uri(String image_uri) {
         this.image_uri = image_uri;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

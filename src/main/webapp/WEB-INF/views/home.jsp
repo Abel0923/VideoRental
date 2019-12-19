@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
     <%@ include file="user_header.jsp"%>
 </div>
@@ -21,13 +22,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="/images/Avengers.jpg" alt="First slide">
+                        <img class="d-block w-100" src="/images/img1.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/images/Joker.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="/images/img2.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/images/Spider.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="/images/img3.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -40,37 +41,50 @@
                 </a>
             </div>
             <br>
+
             <!-- video list -->
             <div class="menu-film-list">
                 <ul style="list-style: none;">
                     <c:if test="${not empty videos}">
                         <c:forEach items="${videos}" var="video">
                             <li style="float: left;">
-                                <a href="video-detail.html">
-                                    <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="/images/Spider.jpg" style=" height: 180px;" alt="Card image cap">
+
+                                    <div class="card" style="width: 12rem;">
+                                        <c:if test="${not empty video.image_uri}">
+                                            <td><img src="/uploads/${video.image_uri}" alt="${video.videoTitle}" style=" height: 14rem; width: 12rem"></td>
+                                        </c:if>
+                                        <c:if test="${empty video.image_uri}">
+                                            <td><img src="/images/Spider.jpg" alt="${video.videoTitle}" style=" height: 14rem; width: 12rem"></td>
+                                        </c:if>
+
                                         <div class="card-body">
-                                            <b class="card-title">${video.videoTitle}</b>
+                                            <b >${video.videoTitle}</b>
                                             <p class="card-text card-small">
-                                                <b>Type : </b>${video.videoType.type_title}<br>
-                                                <b>Genre : </b>${video.videoGenre.title}<br>
-                                                <c:if test="${not empty video.age}">
-                                                    <b>Age : </b>${video.age}<br>
-                                                </c:if>
-                                                <c:if test="${not empty video.year}">
-                                                    <b>Year : </b>${video.year}<br>
-                                                </c:if>
-                                                <b>price : </b>${video.price}<br>
+                                                <small>
+                                                Description : <br>
+                                                    &nbsp;&nbsp;
+                                                    Category : ${video.videoType.type_title}<br>&nbsp;&nbsp;
+                                                    Genre : ${video.videoGenre.title}<br>&nbsp;&nbsp;
+
+                                                    <c:if test="${video.age >0}">
+                                                        Max. Age : ${video.age}<br>&nbsp;&nbsp;
+                                                    </c:if>
+                                                    <c:if test="${video.year>0}">
+                                                        Year : ${video.year}<br>&nbsp;&nbsp;
+                                                    </c:if>
+                                                    Price : ${video.price}<br>
+                                                </small>
+
                                             </p>
                                         </div>
                                         <div class="card-footer">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
+                                            <small class="text-muted">uploaded date : ${video.created_at}</small>
                                             <a href="/user/cart/${video.videoId}">
                                                 <i class="mdi mdi-cart text-primary mx-0 float-right"></i>
                                             </a>
                                         </div>
                                     </div>
-                                </a>
+
                             </li>
                         </c:forEach>
                     </c:if>

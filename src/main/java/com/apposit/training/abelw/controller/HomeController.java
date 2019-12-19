@@ -36,6 +36,7 @@ public class HomeController {
         model.addAttribute("videos", userService.getVideos());
         model.addAttribute("genre", userService.findAllGenre());
         model.addAttribute("type", userService.findAllType());
+        model.addAttribute("cart", cart);
 
         @SuppressWarnings("unchecked")
         List<VideoByTypeDto> cart = (List<VideoByTypeDto>) session.getAttribute("MY_CART");
@@ -77,6 +78,7 @@ public class HomeController {
         model.addAttribute("total_price", new CalculatePrice().calculatedPrice(cart));
         model.addAttribute("genre", userService.findAllGenre());
         model.addAttribute("type", userService.findAllType());
+        model.addAttribute("cart", cart);
 
         request.getSession().getAttribute("MY_CART");
         return "cart";

@@ -3,9 +3,11 @@ package com.apposit.training.abelw.data;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
 import org.hibernate.annotations.Tables;
+import org.ocpsoft.prettytime.PrettyTime;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
+import java.util.Date;
 
 public class VideoByTypeDto {
 
@@ -18,6 +20,7 @@ public class VideoByTypeDto {
     private Double price;
     private int onOfDays;
     private String image_uri;
+    private Date created_at;
 
     public VideoByTypeDto(Long videoId,
                           String videoTitle,
@@ -27,7 +30,8 @@ public class VideoByTypeDto {
                           String year,
                           Double price,
                           int onOfDays,
-                          String image_uri) {
+                          String image_uri,
+                          Date created_at) {
         this.videoId = videoId;
         this.videoTitle = videoTitle;
         this.videoType = videoType;
@@ -37,6 +41,7 @@ public class VideoByTypeDto {
         this.price = price;
         this.onOfDays = onOfDays;
         this.image_uri = image_uri;
+        this.created_at = created_at;
     }
 
     public VideoByTypeDto() {
@@ -112,5 +117,13 @@ public class VideoByTypeDto {
 
     public void setImage_uri(String image_uri) {
         this.image_uri = image_uri;
+    }
+
+    public String getCreated_at() {
+        return new PrettyTime().format(created_at);
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

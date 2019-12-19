@@ -28,8 +28,6 @@ public class UserService {
     @Autowired
     VideoTypeRepository videoTypeRepository;
 
-    @Autowired
-    VideoCrud videoCrud;
 
     public void fetchData(){
         this.videos.clear();
