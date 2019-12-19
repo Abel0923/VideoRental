@@ -37,10 +37,10 @@ public class Video implements Serializable {
     private VideoGenre genre;
 
     @Column(name = "age")
-    private  String age;
+    private  int age;
 
     @Column(name = "year")
-    private  String year;
+    private  int year;
 
     @Column(name = "image_uri")
     private String image_uri;
@@ -87,19 +87,19 @@ public class Video implements Serializable {
         this.genre = genre;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 

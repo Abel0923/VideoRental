@@ -18,11 +18,11 @@ public class CalculatePrice {
     public Double calculatedPrice(List<VideoByTypeDto> cartValue){
         for (VideoByTypeDto video :cartValue) {
              this.rate = video.getPrice();
-             if (video.getVideoType().getType_title().equalsIgnoreCase("CHILDREN") && video.getAge() != null){
-                 this.ageValue = Double.parseDouble(video.getAge()) / 2;
+             if (video.getVideoType().getType_title().equalsIgnoreCase("CHILDREN") && video.getAge() > 2){
+                 this.ageValue = (double) video.getAge() / 2;
                  this.totalPrice = rate * days + ageValue + this.totalPrice;
-             }else if(video.getVideoType().getType_title().equalsIgnoreCase("NEW") && video.getYear() != null){
-                this.year = new Date().getYear() - Integer.parseInt(video.getYear());
+             }else if(video.getVideoType().getType_title().equalsIgnoreCase("NEW") && video.getYear() > 0){
+                this.year = new Date().getYear() - video.getYear();
                 this.totalPrice = rate * days - this.year + this.totalPrice;
             }else {
                  this.totalPrice = rate * days + this.totalPrice;

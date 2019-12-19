@@ -18,7 +18,7 @@ public class VideoGenre implements Serializable {
     public long id;
 
     @NotBlank(message = "Title can not be Empty")
-    @Size(min = 1, message = "Title text size can not be less than 2")
+    @Size(min = 2, message = "Title text size can not be less than 2")
     @Column(name = "title")
     public String title;
 

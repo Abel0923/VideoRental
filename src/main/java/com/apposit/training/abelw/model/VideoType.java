@@ -1,7 +1,9 @@
 package com.apposit.training.abelw.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
@@ -19,9 +21,11 @@ public class VideoType implements Serializable {
     private Long id;
 
     @NotBlank(message = "Title can not be Empty")
+    @Size(min = 3, message = "Title size can not be less than 3")
     @Column(name = "type_title")
     private String type_title;
 
+    @Min(value = 8, message = "Price can not be less than 8 birr")
     @Column(name = "price")
     private Double price;
 

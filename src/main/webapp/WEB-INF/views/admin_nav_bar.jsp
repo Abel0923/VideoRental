@@ -51,12 +51,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/admin_list_videos">
-                <i class="mdi mdi-account-multiple menu-icon"></i>
-                <span class="menu-title">List Of Videos</span>
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="/admin/admin_list_rented">
                 <i class="mdi mdi-film menu-icon"></i>
                 <span class="menu-title">Rented Videos</span>

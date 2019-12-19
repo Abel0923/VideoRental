@@ -70,32 +70,53 @@
                     <div class="col-md-12 stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-title">Customer</p>
+
+                                <div class="card-title"><i class="mdi mdi-library-movie"></i>&nbsp;&nbsp;Video List</div>
                                 <div class="table-responsive">
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>
                                         <tr>
+                                            <th>Icon</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Genre</th>
                                             <th>Price</th>
-                                            <th>Uploaded Date</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Jeremy Ortega</td>
-                                            <td>Levelled up</td>
-                                            <td>Catalinaborough</td>
-                                            <td>$790</td>
-                                            <td>06 Jan 2018</td>
-                                        </tr>
+                                        <c:forEach items="${videos}" var="video">
+                                            <tr>
+                                                <c:if test="${not empty video.image_uri}">
+                                                    <td><img src="/uploads/${video.image_uri}" alt="${video.videoTitle}" width="20" height="20"></td>
+                                                </c:if>
+                                                <c:if test="${empty video.image_uri}">
+                                                    <td><img src="/images/Avengers.jpg" alt="${video.videoTitle}" width="20" height="20"></td>
+                                                </c:if>
+
+                                                <td>${video.videoTitle}</td>
+                                                <td>${video.videoType.type_title}</td>
+                                                <td>${video.videoGenre.title}</td>
+                                                <td>${video.price}</td>
+                                                <td>
+                                                    <a href="/admin/edit_video/${video.videoId}" class="btn btn-sm btn-outline-info">
+                                                        <i class="mdi mdi-folder-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                    <a href="/admin/delete_video/${video.videoId}" class="btn btn-sm btn-outline-danger">
+                                                        <i class="mdi mdi-delete"></i>
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!--//////////////////////////////// -->
             </div>

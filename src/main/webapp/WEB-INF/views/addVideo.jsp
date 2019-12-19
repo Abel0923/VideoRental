@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -109,7 +110,6 @@
                                             <span class="input-group-text">&nbsp;Film Image</span>
                                         </div>
                                         <input  id="file" name="file" type="file" class="form-control"/>
-<%--                                        <errors path="image" cssClass="text-warning" />--%>
                                     </div>
 
                                     <div class="input-group">
@@ -138,14 +138,12 @@
                                             <span class="input-group-text">&nbsp;Max. Age</span>
                                         </div>
                                         <form:input path="age" id="age" type="text" class="form-control"/>
-                                        <form:errors path="age" cssClass="text-warning" />
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Year</span>
                                         </div>
                                         <form:input path="year" id="year" type="text" class="form-control"/>
-                                        <form:errors path="year" cssClass="text-warning" />
                                     </div>
 
 

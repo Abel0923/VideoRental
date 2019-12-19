@@ -20,6 +20,13 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
             + "FROM Video v WHERE  v.id = :id")
      List<VideoByTypeDto> fetchVideoId(long id);
 
+    @Query(value = "SELECT new com.apposit.training.abelw.data.VideoByTypeDto" +
+            "(v.id, v.title, v.type, v.genre, v.age, v.year, v.type.price, 1, v.image_uri, v.created_at) "
+            + "FROM Video v WHERE  v.id = :id")
+     VideoByTypeDto findVideosById(long id);
+
+
+
     Video findVideoById(long id);
 
 }

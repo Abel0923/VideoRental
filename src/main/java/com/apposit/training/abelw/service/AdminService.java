@@ -50,6 +50,9 @@ public class AdminService {
     public List<VideoGenre> findAllGenre(){
         return genreRepository.findAll();
     }
+    public Video findVideoById(Long id){
+        return videoRepository.findVideoById(id);
+    }
 
     public List<VideoType> findAllVideoType(){
         return videoTypeRepository.findAll();
@@ -79,6 +82,12 @@ public class AdminService {
     public void deleteVideo(Long id){
         videoRepository.deleteById(id);
         videos.removeIf(x -> x.getVideoId() == id);
+    }
+
+    public void saveEditedVideo(Video selectedVideo){
+        Video video = videoRepository.findVideoById(selectedVideo.getId());
+        video.setTitle(selectedVideo.getTitle());
+        videoRepository.save(video);
     }
 
 }

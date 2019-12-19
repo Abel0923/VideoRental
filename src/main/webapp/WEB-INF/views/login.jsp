@@ -27,31 +27,35 @@
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth px-0">
+
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
-                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                        <div class="brand-logo">
-                            <%--                <img src="images/logo.svg" alt="logo">--%>
+                    <c:if test="${param.error != null}">
+                        <div class="alert alert-warning" role="alert">
+                            Username and password is not correct!<br>
+                            Try Again!
                         </div>
+                    </c:if>
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                         <h4>Log-In</h4>
                         <h6 class="font-weight-light">Video Rental Admin.</h6>
 
                         <c:url var="loginUrl" value="/login"/>
-                        <form action="${loginUrl}" method="post" class="pt-3">
+                        <form:form action="${loginUrl}" method="post" class="pt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg"
+                                <input  type="text" class="form-control form-control-lg"
                                        id="username" name="username" placeholder="Username"
-                                       required>
+                                       required="required"/>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-lg"
                                        id="password" name="password" placeholder="Password"
-                                       required>
+                                       required="required"/>
                             </div>
 
                             <button type="submit" class="btn btn-lg float-right hvr-icon-forward"> Sign In
                             </button>
-                        </form>
+                        </form:form>
 
                     </div>
                 </div>

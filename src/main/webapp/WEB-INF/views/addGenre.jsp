@@ -1,13 +1,14 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div>
-    <%@ include file="admin_header.jsp"%>
+    <%@ include file="admin_header.jsp" %>
 </div>
 
 <div class="container-fluid page-body-wrapper">
 
     <!-- side bar -->
     <div>
-        <%@ include file="admin_nav_bar.jsp"%>
+        <%@ include file="admin_nav_bar.jsp" %>
     </div>
 
     <!-- partial -->
@@ -26,15 +27,14 @@
                                     <p class="card-description">
                                         <form:form class="forms-sample" method="post" action="/admin/admin_add_genre"
                                                    modelAttribute="genre">
-                                    <div class="input-group">
+                                    <div class="input-group" align="centre">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Film Title</span>
                                         </div>
                                         <form:input path="title" id="title" type="text" class="form-control"
                                                     required="required"/>
-                                    <form:errors path="title" cssClass="text-warning" />
-
-                                </div>
+                                        <form:errors path="title" cssClass="text-warning"/>
+                                    </div>
 
                                     <form:button value="Add Video" type="submit"
                                                  class="btn btn-primary mr-2">
@@ -55,5 +55,5 @@
         <script src="/js/off-canvas.js"></script>
         <script src="/js/hoverable-collapse.js"></script>
         <script src="/js/template.js"></script>
-</body>
-</html>
+        </body>
+        </html>

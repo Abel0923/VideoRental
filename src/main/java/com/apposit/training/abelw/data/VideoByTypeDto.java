@@ -15,8 +15,8 @@ public class VideoByTypeDto {
     private String videoTitle;
     private VideoType videoType;
     private VideoGenre videoGenre;
-    private String age;
-    private String year;
+    private int age;
+    private int year;
     private Double price;
     private int onOfDays;
     private String image_uri;
@@ -26,8 +26,8 @@ public class VideoByTypeDto {
                           String videoTitle,
                           VideoType videoType,
                           VideoGenre videoGenre,
-                          String age,
-                          String year,
+                          int age,
+                          int year,
                           Double price,
                           int onOfDays,
                           String image_uri,
@@ -79,19 +79,19 @@ public class VideoByTypeDto {
         this.videoGenre = videoGenre;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
