@@ -17,6 +17,7 @@ public class VideoByTypeDto {
     private String year;
     private Double price;
     private int onOfDays;
+    private String image_uri;
 
     public VideoByTypeDto(Long videoId,
                           String videoTitle,
@@ -25,7 +26,8 @@ public class VideoByTypeDto {
                           String age,
                           String year,
                           Double price,
-                          int onOfDays) {
+                          int onOfDays,
+                          String image_uri) {
         this.videoId = videoId;
         this.videoTitle = videoTitle;
         this.videoType = videoType;
@@ -34,6 +36,7 @@ public class VideoByTypeDto {
         this.year = year;
         this.price = price;
         this.onOfDays = onOfDays;
+        this.image_uri = image_uri;
     }
 
     public VideoByTypeDto() {
@@ -101,5 +104,13 @@ public class VideoByTypeDto {
 
     public void setOnOfDays(int onOfDays) {
         this.onOfDays = onOfDays;
+    }
+
+    public String getImage_uri() {
+        return image_uri;
+    }
+
+    public void setImage_uri(String image_uri) {
+        this.image_uri = image_uri;
     }
 }

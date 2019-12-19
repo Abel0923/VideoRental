@@ -95,14 +95,21 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-description">
-                                        <form:form class="forms-sample" method="post" action="/admin/add_video"
-                                                   modelAttribute="video">
+                    <form:form class="forms-sample" method="post" action="/admin/add_video" modelAttribute="video"
+                               enctype = "multipart/form-data">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Film Title</span>
                                         </div>
                                         <form:input path="title" id="title" type="text" class="form-control" required="required"/>
                                         <form:errors path="title" cssClass="text-warning" />
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">&nbsp;Film Image</span>
+                                        </div>
+                                        <input  id="file" name="file" type="file" class="form-control"/>
+<%--                                        <errors path="image" cssClass="text-warning" />--%>
                                     </div>
 
                                     <div class="input-group">

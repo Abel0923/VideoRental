@@ -41,6 +41,9 @@ public class Video implements Serializable {
     @Column(name = "year")
     private  String year;
 
+    @Column(name = "image_uri")
+    private String image_uri;
+
     public Video() {
     }
 
@@ -94,5 +97,13 @@ public class Video implements Serializable {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public String getImage_uri() {
+        return image_uri;
+    }
+
+    public void setImage_uri(String image_uri) {
+        this.image_uri = image_uri;
     }
 }

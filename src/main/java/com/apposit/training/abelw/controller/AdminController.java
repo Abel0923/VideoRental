@@ -3,15 +3,13 @@ package com.apposit.training.abelw.controller;
 import com.apposit.training.abelw.data.VideoData;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
-import com.apposit.training.abelw.service.VideoService;
+import com.apposit.training.abelw.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 ;
@@ -19,39 +17,45 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
+
+
+
     @Autowired
-    VideoService videoService;
+    AdminService adminService;
 
 
     @GetMapping("/admin_home")
     public String adminHome(Model model){
-        videoService.fetchData();
-        model.addAttribute("noOfVideos", videoService.getVideos().size());
+        adminService.fetchData();
+        model.addAttribute("noOfVideos", adminService.getVideos().size());
         return "adminHome";
     }
     @GetMapping("/admin_add_videos")
     public String addVideos(Model model){
         model.addAttribute("video", new VideoData());
-        model.addAttribute("videoGenre", videoService.findAllGenre());
-        model.addAttribute("videoType", videoService.findAllVideoType());
+        model.addAttribute("videoGenre", adminService.findAllGenre());
+        model.addAttribute("videoType", adminService.findAllVideoType());
         return "addVideo";
     }
     @PostMapping("/add_video")
-    public String saveVideo(Model model, @Valid VideoData videoData, BindingResult result){
+    public String saveVideo(Model model,
+                            @Valid VideoData videoData,
+                            @RequestParam("file") MultipartFile file,
+                            BindingResult result){
 
-        if (result.hasErrors()){
+        if (result.hasErrors() && file.getSize() > 2000){
             model.addAttribute("video", new VideoData());
-            model.addAttribute("videoGenre", videoService.findAllGenre());
-            model.addAttribute("videoType", videoService.findAllVideoType());
+            model.addAttribute("videoGenre", adminService.findAllGenre());
+            model.addAttribute("videoType", adminService.findAllVideoType());
             return "addVideo";
         }
 
-        videoService.addVideos(videoData);
+        adminService.addVideos(videoData, file);
         return "redirect:/admin/admin_list_videos";
     }
     @GetMapping("/admin_list_videos")
     public String listCustomers(Model model){
-        model.addAttribute("videos", videoService.getVideos());
+        model.addAttribute("videos", adminService.getVideos());
         return "listVideos";
     }
     @GetMapping("/admin_list_rented")
@@ -73,7 +77,7 @@ public class AdminController {
         if (result.hasErrors()){
             return "addType";
         }
-        videoService.saveType(videoType);
+        adminService.saveType(videoType);
         return "redirect:/admin/admin_home";
     }
     @PostMapping("admin_add_genre")
@@ -82,22 +86,13 @@ public class AdminController {
         if (result.hasErrors()){
             return "addGenre";
         }
-        videoService.saveGenre(videoGenre);
+        adminService.saveGenre(videoGenre);
         return "redirect:/admin/admin_home";
     }
     @GetMapping("delete_video/{id}")
     public String deleteVideo(@PathVariable("id") Long id){
-        videoService.deleteVideo(id);
-        return "redirect:/admin/admin_home";
+        adminService.deleteVideo(id);
+        return "redirect:/admin/admin_list_rented";
     }
 
-//    private String getLoggedInUserName(Model model) {
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        if (principal instanceof UserDetails) {
-//            return ((UserDetails) principal).getUsername();
-//        }
-//
-//        return principal.toString();
-//    }
 }

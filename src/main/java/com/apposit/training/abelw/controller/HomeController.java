@@ -1,7 +1,7 @@
 package com.apposit.training.abelw.controller;
 
 import com.apposit.training.abelw.data.VideoByTypeDto;
-import com.apposit.training.abelw.service.VideoService;
+import com.apposit.training.abelw.service.UserService;
 import com.apposit.training.abelw.utils.CalculatePrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,21 +21,21 @@ public class HomeController {
 
     List<VideoByTypeDto> cart;
     @Autowired
-    VideoService videoService;
+    UserService userService;
 
 
     @GetMapping("/")
     public String homePage(Model model){
-        videoService.fetchData();
+        userService.fetchData();
         return "redirect:/user/home";
     }
 
     @GetMapping("/home")
     public String redirector(Model model, HttpSession session){
 
-        model.addAttribute("videos", videoService.getVideos());
-        model.addAttribute("genre", videoService.findAllGenre());
-        model.addAttribute("type", videoService.findAllType());
+        model.addAttribute("videos", userService.getVideos());
+        model.addAttribute("genre", userService.findAllGenre());
+        model.addAttribute("type", userService.findAllType());
 
         @SuppressWarnings("unchecked")
         List<VideoByTypeDto> cart = (List<VideoByTypeDto>) session.getAttribute("MY_CART");
@@ -49,12 +49,12 @@ public class HomeController {
     }
     @GetMapping("/genre/{genre}")
     public String videoByGenre(@PathVariable("genre") long genre, Model model){
-        videoService.fetchDataByGenre(genre);
+        userService.fetchDataByGenre(genre);
         return "redirect:/user/home";
     }
     @GetMapping("/type/{type}")
     public String videoByType(@PathVariable("type") int type, Model model){
-        videoService.fetchDataByType(type);
+        userService.fetchDataByType(type);
         return "redirect:/user/home";
     }
 
@@ -66,7 +66,7 @@ public class HomeController {
             request.getSession().setAttribute("MY_CART", cart);
         }
 
-        cart.addAll(videoService.findVideoById(id));
+        cart.addAll(userService.findVideoById(id));
         request.getSession().setAttribute("MY_CART", cart);
         return "redirect:/user/home";
     }
@@ -75,8 +75,8 @@ public class HomeController {
     public String getCart(Model model, HttpServletRequest request){
         if (cart!=null)
         model.addAttribute("total_price", new CalculatePrice().calculatedPrice(cart));
-        model.addAttribute("genre", videoService.findAllGenre());
-        model.addAttribute("type", videoService.findAllType());
+        model.addAttribute("genre", userService.findAllGenre());
+        model.addAttribute("type", userService.findAllType());
 
         request.getSession().getAttribute("MY_CART");
         return "cart";

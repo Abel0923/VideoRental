@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,6 +37,7 @@
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>
                                         <tr>
+                                            <th>Icon</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Genre</th>
@@ -46,6 +48,13 @@
                                         <tbody>
                                         <c:forEach items="${videos}" var="video">
                                             <tr>
+                                                <c:if test="${not empty video.image_uri}">
+                                                <td><img src="/uploads/${video.image_uri}" alt="${video.videoTitle}" width="20" height="20"></td>
+                                                </c:if>
+                                                <c:if test="${empty video.image_uri}">
+                                                <td><img src="/images/Avengers.jpg" alt="${video.videoTitle}" width="20" height="20"></td>
+                                                </c:if>
+
                                                 <td>${video.videoTitle}</td>
                                                 <td>${video.videoType.type_title}</td>
                                                 <td>${video.videoGenre.title}</td>

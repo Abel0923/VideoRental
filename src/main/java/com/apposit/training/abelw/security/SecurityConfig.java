@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     CustomSuccessHandler customSuccessHandler;
@@ -25,13 +25,14 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("user1").password("{noop}abc123").authorities("ROLE_USER")
                 .and()
-                .withUser("admin").password("{noop}admin123").authorities("ROLE_USER","ROLE_ADMIN");
+                .withUser("admin").password("{noop}admin123").authorities("ROLE_USER", "ROLE_ADMIN");
     }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**");
+                .antMatchers("/resources/**","/uploads/**");
     }
 
     @Override
@@ -40,7 +41,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/user/**").access("hasRole('ROLE_USER')")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/resources/**","/resources/static/**")
+                .antMatchers("/resources/**", "/resources/static/**","/uploads/**","../uploads/**")
                 .permitAll()
                 .and()
                 .formLogin().loginPage("/login")
