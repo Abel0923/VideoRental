@@ -43,9 +43,7 @@
                                         <td>${cart.year}</td>
                                         <td>${cart.price}</td>
                                         <td align="center">
-                                            <i class="mdi mdi-minus-circle sub" id="sub"></i>
-                                            <input type="number" id="1" value="${cart.onOfDays}" min="1" max="3" class="noOfDays" disabled/>
-                                            <i class="mdi mdi-plus-circle add" id="add"></i>
+                                                ${cart.onOfDays}
                                         </td>
                                         <td>
                                             <a href="/user/cart/delete/${cart.videoId}"><i class="mdi mdi-cart-remove" ></i></a>
@@ -59,7 +57,11 @@
                                         <td></td>
                                         <td></td>
                                         <td style="float: right">Total Price : </td>
-                                        <td align="center">${total_price}&nbsp;ETB</td>
+                                        <td align="center" class="total_price">${total_price}&nbsp;ETB</td>
+                                        <td>
+                                            <button class="btn btn-outline-success btn-sm">
+                                                <i class="mdi mdi-paypal"></i>&nbsp;Pay</button>
+                                        </td>
                                     </tr>
 
                                     </tbody>
@@ -77,17 +79,6 @@
     </div>
 </div>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script>
-    $('.add').click(function () {
-        if ($(this).prev().val() < 3) {
-            $(this).prev().val(+$(this).prev().val() + 1);
-        }
-    });
-    $('.sub').click(function () {
-        if ($(this).next().val() > 1) {
-            if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
-        }
-    });
-</script>
+
 </body>
 </html>

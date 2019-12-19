@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div>
     <%@ include file="user_header.jsp"%>
 </div>
@@ -72,14 +73,18 @@
                                                     <c:if test="${video.year>0}">
                                                         Year : ${video.year}<br>&nbsp;&nbsp;
                                                     </c:if>
-                                                    Price : ${video.price}<br>
+                                                Price : ${video.price}<br>
+                                                Days : <i class="mdi mdi-minus-circle sub" id="sub"></i>
+                                                <input type="number" id="days" value="${onOfDays}" min="1" max="3" class="noOfDays" disabled/>
+                                                <i class="mdi mdi-plus-circle add" id="add"></i>
+
                                                 </small>
 
                                             </p>
                                         </div>
                                         <div class="card-footer">
                                             <small class="text-muted">uploaded date : ${video.created_at}</small>
-                                            <a href="/user/cart/${video.videoId}">
+                                            <a onclick="location.href=this.href+'/user/cart/${video.videoId}/'+onOfDays.val()">
                                                 <i class="mdi mdi-cart text-primary mx-0 float-right"></i>
                                             </a>
                                         </div>
@@ -98,5 +103,18 @@
     </div>
 </div>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script>
+    var onOfDays;
+    $('.add').click(function () {
+        if ($(this).prev().val() < 3) {
+            onOfDays = $(this).prev().val(+$(this).prev().val() + 1);
+        }
+    });
+    $('.sub').click(function () {
+        if ($(this).next().val() > 1) {
+            if ($(this).next().val() > 1) onOfDays = $(this).next().val(+$(this).next().val() - 1);
+        }
+    });
+</script>
 </body>
 </html>

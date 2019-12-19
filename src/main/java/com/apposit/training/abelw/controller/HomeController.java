@@ -59,8 +59,10 @@ public class HomeController {
         return "redirect:/user/home";
     }
 
-    @GetMapping("/cart/{id}")
-    public String addToCart(@PathVariable("id") int id, Model model, HttpSession session, HttpServletRequest request){
+    @GetMapping("/cart/{id}/{days}")
+    public String addToCart(@PathVariable("id") int id, @PathVariable("days") int days,
+                            Model model, HttpSession session, HttpServletRequest request){
+        System.out.println("CAAAAAAAAAA : " + days);
          cart  = (List<VideoByTypeDto>) session.getAttribute("MY_CART");
         if (cart == null) {
             cart = new ArrayList<>();
@@ -68,6 +70,7 @@ public class HomeController {
         }
 
         cart.addAll(userService.findVideoById(id));
+        cart.get(0).setOnOfDays(days);
         request.getSession().setAttribute("MY_CART", cart);
         return "redirect:/user/home";
     }

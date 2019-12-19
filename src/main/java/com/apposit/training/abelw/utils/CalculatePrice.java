@@ -20,10 +20,10 @@ public class CalculatePrice {
              this.rate = video.getPrice();
              if (video.getVideoType().getType_title().equalsIgnoreCase("CHILDREN") && video.getAge() > 2){
                  this.ageValue = (double) video.getAge() / 2;
-                 this.totalPrice = rate * days + ageValue + this.totalPrice;
+                 this.totalPrice = rate * video.getOnOfDays() + ageValue + this.totalPrice;
              }else if(video.getVideoType().getType_title().equalsIgnoreCase("NEW") && video.getYear() > 0){
                 this.year = new Date().getYear() - video.getYear();
-                this.totalPrice = rate * days - this.year + this.totalPrice;
+                this.totalPrice = rate * video.getOnOfDays() - this.year + this.totalPrice;
             }else {
                  this.totalPrice = rate * days + this.totalPrice;
              }
