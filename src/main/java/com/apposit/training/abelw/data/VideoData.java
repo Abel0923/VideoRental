@@ -4,6 +4,7 @@ import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -25,18 +26,16 @@ public class VideoData implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @NotBlank(message = "Title Can not be Empty!")
     @Column(name = "type_id")
     private int type_id;
 
-    @NotBlank(message = "Title Can not be Empty!")
     @Column(name = "genre_id")
     private int genre_id;
 
     @Column(name = "age")
     private int age;
 
-    @Size(min = 2, message = "Year can not be less than 2")
+    @Min(value = 1960, message = "Year can not be less than a year of 1960")
     @Column(name = "year")
     private int year;
 

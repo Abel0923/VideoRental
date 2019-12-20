@@ -19,7 +19,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
@@ -41,7 +40,7 @@ public class AdminService {
 
     public void fetchData(){
         this.videos.clear();
-        videos.addAll(videoRepository.fetchEmpDeptDataInnerJoin());
+        videos.addAll(videoRepository.fetchAllVideos());
     }
     public List<VideoByTypeDto> getVideos(){
         return this.videos;
@@ -84,10 +83,20 @@ public class AdminService {
         videos.removeIf(x -> x.getVideoId() == id);
     }
 
+    public void deleteGenre(Long id){
+        genreRepository.deleteById(id);
+    }
+    public void deleteType(Long id){
+        videoTypeRepository.deleteById(id);
+    }
+
     public void saveEditedVideo(Video selectedVideo){
         Video video = videoRepository.findVideoById(selectedVideo.getId());
         video.setTitle(selectedVideo.getTitle());
         videoRepository.save(video);
     }
 
+    public List<VideoByTypeDto> getRentedVideos(){
+        return videoRepository.fetchDataByRented();
+    }
 }

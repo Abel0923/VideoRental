@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
     <%@ include file="admin_header.jsp" %>
 </div>
@@ -29,17 +30,17 @@
                                             <th>Category</th>
                                             <th>Genre</th>
                                             <th>Price</th>
-                                            <th>Uploaded Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach items="${rented}" var="rented">
                                         <tr>
-                                            <td>Jeremy Ortega</td>
-                                            <td>Levelled up</td>
-                                            <td>Catalinaborough</td>
-                                            <td>$790</td>
-                                            <td>06 Jan 2018</td>
+                                            <td>${rented.videoTitle}</td>
+                                            <td>${rented.videoType.type_title}</td>
+                                            <td>${rented.videoGenre.title}</td>
+                                            <td>${rented.price}</td>
                                         </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

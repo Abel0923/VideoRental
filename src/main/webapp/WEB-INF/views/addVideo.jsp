@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
         }
 
         /* style the items (options), including the selected item: */
-        .select-items div,.select-selected {
+        .select-items div, .select-selected {
             color: #ffffff;
             padding: 8px 16px;
             border: 1px solid transparent;
@@ -96,54 +97,65 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-description">
-                    <form:form class="forms-sample" method="post" action="/admin/add_video" modelAttribute="video"
-                               enctype = "multipart/form-data">
+                                        <form:form class="forms-sample" method="post" action="/admin/add_video"
+                                                   enctype="multipart/form-data"
+                                                   modelAttribute="video">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Film Title</span>
                                         </div>
-                                        <form:input path="title" id="title" type="text" class="form-control" required="required"/>
-                                        <form:errors path="title" cssClass="text-warning" />
+                                        <form:input path="title" id="title" type="text" class="form-control"
+                                                    required="required"/>
+                                        <form:errors path="title" cssClass="text-warning"/>
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Film Image</span>
                                         </div>
-                                        <input  id="file" name="file" type="file" class="form-control"/>
+                                        <input id="file" name="file" type="file" class="form-control"/>
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Type</span>
                                         </div>
-                                        <form:select path="type_id" class="custom-select" cssStyle="width: 75%;">
+                                        <form:select path="type_id" class="custom-select" cssStyle="width: 75%;"
+                                                     id="videoType">
                                             <c:forEach items="${videoType}" var="type">
                                                 <form:option value="${type.id}">${type.type_title}</form:option>
                                             </c:forEach>
                                         </form:select>
+                                        <form:errors path="type_id" cssClass="text-warning"/>
+
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Genre</span>
                                         </div>
-                                        <form:select path="genre_id"  class="custom-select" cssStyle="width: 75%;">
+                                        <form:select path="genre_id" class="custom-select" cssStyle="width: 75%;">
                                             <c:forEach items="${videoGenre}" var="genre">
                                                 <form:option value="${genre.id}">${genre.title}</form:option>
                                             </c:forEach>
                                         </form:select>
+                                        <form:errors path="genre_id" cssClass="text-warning"/>
+
                                     </div>
-                                    <div class="input-group">
+                                    <div class="input-group" id="videoAge" >
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Max. Age</span>
                                         </div>
-                                        <form:input path="age" id="age" type="text" class="form-control"/>
+                                        <form:input path="age" id="age" type="text" class="form-control"
+                                                    value="18" required="required"/>
+                                        <form:errors path="age" cssClass="text-warning"/>
                                     </div>
-                                    <div class="input-group">
+                                    <div class="input-group" id="videoYear" style="display: none;">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Year</span>
                                         </div>
-                                        <form:input path="year" id="year" type="text" class="form-control"/>
+                                        <form:input path="year" id="year" type="date" class="form-control"
+                                                    required="required"/>
+                                        <form:errors path="year" cssClass="text-warning"/>
                                     </div>
 
 
@@ -165,5 +177,14 @@
         <script src="/js/off-canvas.js"></script>
         <script src="/js/hoverable-collapse.js"></script>
         <script src="/js/template.js"></script>
+        <script>
+
+            $('#videoType').change(function () {
+                $('#videoType').val() == 18 ? $('#videoAge').show() : $('#videoAge').hide();
+                $('#videoType').val() == 19 ? $('#videoYear').show() : $('#videoYear').hide();
+
+            })
+        </script>
+
 </body>
 </html>

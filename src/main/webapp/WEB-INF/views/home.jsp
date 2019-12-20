@@ -85,7 +85,7 @@
                                         <div class="card-footer">
                                             <small class="text-muted">uploaded date : ${video.created_at}</small>
                                             <a onclick="location.href=this.href+'/user/cart/${video.videoId}/'+onOfDays.val()">
-                                                <i class="mdi mdi-cart text-primary mx-0 float-right"></i>
+                                                <i class="mdi mdi-cart text-primary mx-0 float-right addToCart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -105,6 +105,18 @@
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
     var onOfDays;
+
+    $(document).ready(function () {
+        if ($('.noOfDays').val().empty() || $('.noOfDays').val().isEmpty || $('.noOfDays').val().eq(0)) {
+            onOfDays=$(this).prev().val(+ 1)
+        }
+    });
+
+    $('.addToCart').click(function () {
+        if ($('.noOfDays').val().isEmpty) {
+            onOfDays = $(this).prev().val(+$(this).prev().val() + 1);
+        }
+    });
     $('.add').click(function () {
         if ($(this).prev().val() < 3) {
             onOfDays = $(this).prev().val(+$(this).prev().val() + 1);

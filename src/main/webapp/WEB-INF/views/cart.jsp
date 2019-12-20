@@ -34,7 +34,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${MY_CART}" var="cart">
+                                    <c:forEach items="${MY_CART}" var="cart" varStatus="loop">
                                     <tr>
                                         <td>${cart.videoTitle}</td>
                                         <td>${cart.videoGenre.title}</td>
@@ -46,7 +46,7 @@
                                                 ${cart.onOfDays}
                                         </td>
                                         <td>
-                                            <a href="/user/cart/delete/${cart.videoId}"><i class="mdi mdi-cart-remove" ></i></a>
+                                            <a href="/user/cart/delete/${loop.index}"><i class="mdi mdi-cart-remove" ></i></a>
                                         </td>
                                     </tr>
                                     </c:forEach>
@@ -59,8 +59,10 @@
                                         <td style="float: right">Total Price : </td>
                                         <td align="center" class="total_price">${total_price}&nbsp;ETB</td>
                                         <td>
+                                            <form action="/user/cart/pay" method="post">
                                             <button class="btn btn-outline-success btn-sm">
                                                 <i class="mdi mdi-paypal"></i>&nbsp;Pay</button>
+                                            </form>
                                         </td>
                                     </tr>
 

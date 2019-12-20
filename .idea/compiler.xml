@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="video-rental" />
         <module name="Project Video Rental" />
+        <module name="video-rental" />
       </profile>
     </annotationProcessing>
   </component>

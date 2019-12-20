@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -89,8 +90,15 @@ public class HomeController {
 
     @GetMapping("/cart/delete/{id}")
     public String deleteItemFromCart(@PathVariable("id") int id){
-        cart.removeIf(x -> x.getVideoId()==id);
+        cart.remove(id);
         return "redirect:/user/cart";
+    }
+
+    @PostMapping("/cart/pay")
+    public String payCart(){
+        userService.renteVideo(cart, new CalculatePrice().calculatedPrice(cart));
+        cart.clear();
+        return "redirect:/user/home";
     }
 
 }

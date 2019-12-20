@@ -1,16 +1,15 @@
 package com.apposit.training.abelw.controller;
 
-import com.apposit.training.abelw.data.VideoByTypeDto;
 import com.apposit.training.abelw.data.VideoData;
 import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
 import com.apposit.training.abelw.service.AdminService;
+import com.apposit.training.abelw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +22,9 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("/admin_home")
@@ -48,7 +50,8 @@ public class AdminController {
                             BindingResult result,
                             Model model) {
 
-        if (result.hasErrors() && file.getSize() > 2000) {
+        //and i do have some validation on file size on application.properties file
+        if (result.hasErrors()) {
             return "addVideo";
         }
 
@@ -58,7 +61,8 @@ public class AdminController {
 
     // ---------------------------   Control on rented videos ----------------------- //
     @GetMapping("/admin_list_rented")
-    public String listRented() {
+    public String listRented(Model model) {
+        model.addAttribute("rented", adminService.getRentedVideos());
         return "listRented";
     }
 
@@ -66,6 +70,7 @@ public class AdminController {
     @GetMapping("admin_add_type")
     public String addType(Model model) {
         model.addAttribute("type", new VideoType());
+        model.addAttribute("listType", userService.findAllType());
         return "addType";
     }
 
@@ -77,12 +82,17 @@ public class AdminController {
         adminService.saveType(videoType);
         return "redirect:/admin/admin_home";
     }
-
+    @GetMapping("admin_remove_type/{id}")
+    public String removeType(@PathVariable("id") Long id){
+        adminService.deleteType(id);
+        return "redirect:/admin/admin_add_type";
+    }
 
     // ---------------------------   Control on genre ----------------------- //
     @GetMapping("admin_add_genre")
     public String addGenre(Model model) {
         model.addAttribute("genre", new VideoGenre());
+        model.addAttribute("listGenre", userService.findAllGenre());
         return "addGenre";
     }
 
@@ -96,11 +106,17 @@ public class AdminController {
         return "redirect:/admin/admin_home";
     }
 
+    @GetMapping("admin_remove_genre/{id}")
+    public String removeGenre(@PathVariable("id") Long id){
+        adminService.deleteGenre(id);
+        return "redirect:/admin/admin_add_genre";
+    }
+
     // ---------------------------   Control delete Video ---------------------------- //
     @GetMapping("delete_video/{id}")
     public String deleteVideo(@PathVariable("id") Long id) {
         adminService.deleteVideo(id);
-        return "redirect:/admin/admin_list_rented";
+        return "redirect:/admin/admin_home";
     }
 
     // ---------------------------   Control edit Video ---------------------------- //
@@ -115,5 +131,8 @@ public class AdminController {
         adminService.saveEditedVideo(video);
         return "redirect:/admin/admin_home";
     }
+
+
+
 
 }

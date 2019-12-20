@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div>
     <%@ include file="admin_header.jsp"%>
@@ -53,6 +54,34 @@
                                     <button class="btn btn-light">Cancel</button>
                             </form:form>
                                     </p>
+                                </div>
+                                <br>
+                                <hr>
+                                <h3>List of Type</h3>
+                                <div class="table-responsive">
+                                    <table id="recent-purchases-listing" class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${listType}" var="type">
+                                        <tr>
+                                            <td>${type.type_title}</td>
+                                            <td>${type.price}</td>
+                                            <td>
+                                                <a href="/admin/admin_remove_type/${type.id}">
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="mdi mdi-delete"></i>Delete</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

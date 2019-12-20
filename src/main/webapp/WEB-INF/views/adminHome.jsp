@@ -125,8 +125,9 @@
     </div>
 </div>
 </div>
-<script src="vendors/base/vendor.bundle.base.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/jquery.dataTables.js"></script>
+<script src="/vendors/base/vendor.bundle.base.js"></script>
+<script src="/js/dashboard.js"></script>
+<script src="/js/jquery.dataTables.js"></script>
+</div>
 </body>
 </html>

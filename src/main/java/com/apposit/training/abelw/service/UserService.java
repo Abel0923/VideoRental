@@ -1,12 +1,11 @@
 package com.apposit.training.abelw.service;
 
+import com.apposit.training.abelw.data.Rented;
 import com.apposit.training.abelw.data.VideoByTypeDto;
+import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
-import com.apposit.training.abelw.repository.GenreRepository;
-import com.apposit.training.abelw.repository.VideoCrud;
-import com.apposit.training.abelw.repository.VideoRepository;
-import com.apposit.training.abelw.repository.VideoTypeRepository;
+import com.apposit.training.abelw.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,15 +27,18 @@ public class UserService {
     @Autowired
     VideoTypeRepository videoTypeRepository;
 
+    @Autowired
+    RentedRepository rentedRepository;
+
 
     public void fetchData(){
         this.videos.clear();
-        videos.addAll(videoRepository.fetchEmpDeptDataInnerJoin());
+        videos.addAll(videoRepository.fetchAllVideos());
     }
 
     public void fetchDataByGenre(long id){
         this.videos.clear();
-        videos.addAll(videoRepository.fetchEmpDeptDataInnerJoin());
+        videos.addAll(videoRepository.fetchAllVideos());
         setVideos(videos.stream().filter(videoByTypeDto -> videoByTypeDto.getVideoGenre().id == id)
                 .collect(Collectors.toList()));
     }
@@ -64,8 +66,20 @@ public class UserService {
 
     public void fetchDataByType(int type) {
         this.videos.clear();
-        videos.addAll(videoRepository.fetchEmpDeptDataInnerJoin());
+        videos.addAll(videoRepository.fetchAllVideos());
         setVideos(videos.stream().filter(videoByTypeDto -> videoByTypeDto.getVideoType().getId() == type)
                 .collect(Collectors.toList()));
+    }
+
+    public void renteVideo(List<VideoByTypeDto> videoByTypeDto, Double total_price){
+        Rented rented;
+        Video videoRented;
+        for (VideoByTypeDto video: videoByTypeDto) {
+            rented = new Rented();
+            rented.setVideo_id(Math.toIntExact(video.getVideoId()));
+            rented.setNo_days(video.getOnOfDays());
+            rented.setTotal_price(total_price.intValue());
+            rentedRepository.save(rented);
+        }
     }
 }
