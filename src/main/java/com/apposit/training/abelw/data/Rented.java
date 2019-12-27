@@ -31,9 +31,8 @@ public class Rented {
     @Column(name = "total_price")
     private int total_price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Video.class)
     @JoinColumn(name = "video_id", insertable = false, updatable = false)
-    @Fetch(FetchMode.JOIN)
     public Video video;
 
     public Rented() {

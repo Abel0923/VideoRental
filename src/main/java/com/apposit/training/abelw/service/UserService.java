@@ -1,7 +1,6 @@
 package com.apposit.training.abelw.service;
 
 import com.apposit.training.abelw.data.Rented;
-import com.apposit.training.abelw.data.VideoByTypeDto;
 import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
-    List<VideoByTypeDto> videos = new ArrayList<>();
+    List<Video> videos = new ArrayList<>();
 
     @Autowired
     VideoRepository videoRepository;
@@ -33,51 +32,51 @@ public class UserService {
 
     public void fetchData(){
         this.videos.clear();
-        videos.addAll(videoRepository.fetchAllVideos());
+        videos.addAll(videoRepository.findAll());
     }
+
 
     public void fetchDataByGenre(long id){
         this.videos.clear();
-        videos.addAll(videoRepository.fetchAllVideos());
-        setVideos(videos.stream().filter(videoByTypeDto -> videoByTypeDto.getVideoGenre().id == id)
+        videos.addAll(videoRepository.findAll());
+        setVideos(videos.stream().filter(video -> video.getGenre().id == id)
                 .collect(Collectors.toList()));
     }
 
-    public List<VideoByTypeDto> getVideos(){
+    public List<Video> getVideos(){
         return this.videos;
     }
 
-    public void setVideos(List<VideoByTypeDto> videos){
+    public void setVideos(List<Video> videos){
         this.videos = videos;
     }
 
-    public List<VideoGenre> findAllGenre(){
+    public List<VideoGenre> getAllGenre(){
         return genreRepository.findAll();
     }
 
-    public List<VideoType> findAllType() {
+    public List<VideoType> getAllType() {
         return videoTypeRepository.findAll();
     }
 
-    public List<VideoByTypeDto> findVideoById(int id){
-        return videoRepository.fetchVideoId(id);
+    public List<Video> findVideoById(int id){
+        return videoRepository.findVideosById(id);
     }
 
 
-    public void fetchDataByType(int type) {
+    public void getDataByType(int type) {
         this.videos.clear();
-        videos.addAll(videoRepository.fetchAllVideos());
-        setVideos(videos.stream().filter(videoByTypeDto -> videoByTypeDto.getVideoType().getId() == type)
+        videos.addAll(videoRepository.findAll());
+        setVideos(videos.stream().filter(video -> video.getType().getId() == type)
                 .collect(Collectors.toList()));
     }
 
-    public void renteVideo(List<VideoByTypeDto> videoByTypeDto, Double total_price){
+    public void renteVideo(List<Video> videos, Double total_price){
         Rented rented;
-        Video videoRented;
-        for (VideoByTypeDto video: videoByTypeDto) {
+        for (Video video: videos) {
             rented = new Rented();
-            rented.setVideo_id(Math.toIntExact(video.getVideoId()));
-            rented.setNo_days(video.getOnOfDays());
+            rented.setVideo_id(Math.toIntExact(video.getId()));
+            rented.setNo_days(video.getNoOfDays());
             rented.setTotal_price(total_price.intValue());
             rentedRepository.save(rented);
         }

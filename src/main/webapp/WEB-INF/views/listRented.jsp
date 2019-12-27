@@ -35,10 +35,10 @@
                                         <tbody>
                                         <c:forEach items="${rented}" var="rented">
                                         <tr>
-                                            <td>${rented.videoTitle}</td>
-                                            <td>${rented.videoType.type_title}</td>
-                                            <td>${rented.videoGenre.title}</td>
-                                            <td>${rented.price}</td>
+                                            <td>${rented.video.title}</td>
+                                            <td>${rented.video.type.type_title}</td>
+                                            <td>${rented.video.genre.title}</td>
+                                            <td>${rented.video.type.price}</td>
                                         </tr>
                                         </c:forEach>
                                         </tbody>

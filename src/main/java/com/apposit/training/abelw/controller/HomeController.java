@@ -1,6 +1,6 @@
 package com.apposit.training.abelw.controller;
 
-import com.apposit.training.abelw.data.VideoByTypeDto;
+import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.service.UserService;
 import com.apposit.training.abelw.utils.CalculatePrice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class HomeController {
 
-    List<VideoByTypeDto> cart;
+    List<Video> cart;
     @Autowired
     UserService userService;
 
@@ -35,12 +35,12 @@ public class HomeController {
     public String redirector(Model model, HttpSession session){
 
         model.addAttribute("videos", userService.getVideos());
-        model.addAttribute("genre", userService.findAllGenre());
-        model.addAttribute("type", userService.findAllType());
+        model.addAttribute("genre", userService.getAllGenre());
+        model.addAttribute("type", userService.getAllType());
         model.addAttribute("cart", cart);
 
         @SuppressWarnings("unchecked")
-        List<VideoByTypeDto> cart = (List<VideoByTypeDto>) session.getAttribute("MY_CART");
+        List<Video> cart = (List<Video>) session.getAttribute("MY_CART");
 
         if (cart == null) {
             cart = new ArrayList<>();
@@ -56,7 +56,7 @@ public class HomeController {
     }
     @GetMapping("/type/{type}")
     public String videoByType(@PathVariable("type") int type, Model model){
-        userService.fetchDataByType(type);
+        userService.getDataByType(type);
         return "redirect:/user/home";
     }
 
@@ -64,14 +64,14 @@ public class HomeController {
     public String addToCart(@PathVariable("id") int id, @PathVariable("days") int days,
                             Model model, HttpSession session, HttpServletRequest request){
         System.out.println("CAAAAAAAAAA : " + days);
-         cart  = (List<VideoByTypeDto>) session.getAttribute("MY_CART");
+         cart  = (List<Video>) session.getAttribute("MY_CART");
         if (cart == null) {
             cart = new ArrayList<>();
             request.getSession().setAttribute("MY_CART", cart);
         }
 
         cart.addAll(userService.findVideoById(id));
-        cart.get(0).setOnOfDays(days);
+        cart.get(0).setNoOfDays(days);
         request.getSession().setAttribute("MY_CART", cart);
         return "redirect:/user/home";
     }
@@ -80,8 +80,8 @@ public class HomeController {
     public String getCart(Model model, HttpServletRequest request){
         if (cart!=null)
         model.addAttribute("total_price", new CalculatePrice().calculatedPrice(cart));
-        model.addAttribute("genre", userService.findAllGenre());
-        model.addAttribute("type", userService.findAllType());
+        model.addAttribute("genre", userService.getAllGenre());
+        model.addAttribute("type", userService.getAllType());
         model.addAttribute("cart", cart);
 
         request.getSession().getAttribute("MY_CART");

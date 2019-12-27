@@ -26,7 +26,7 @@ public class Video implements Serializable {
     public  String title;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = VideoType.class)
     @JoinColumn(name = "type_id", insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
     private VideoType type;
@@ -48,6 +48,8 @@ public class Video implements Serializable {
     @Column(name = "created_at")
     private Date created_at;
 
+    @Column(name = "noofdays")
+    private int noOfDays;
     public Video() {
     }
 
@@ -117,5 +119,13 @@ public class Video implements Serializable {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public int getNoOfDays() {
+        return noOfDays;
+    }
+
+    public void setNoOfDays(int noOfDays) {
+        this.noOfDays = noOfDays;
     }
 }

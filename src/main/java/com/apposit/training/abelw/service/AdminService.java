@@ -1,14 +1,11 @@
 package com.apposit.training.abelw.service;
 
-import com.apposit.training.abelw.data.VideoByTypeDto;
+import com.apposit.training.abelw.data.Rented;
 import com.apposit.training.abelw.data.VideoData;
 import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
-import com.apposit.training.abelw.repository.GenreRepository;
-import com.apposit.training.abelw.repository.VideoCrud;
-import com.apposit.training.abelw.repository.VideoRepository;
-import com.apposit.training.abelw.repository.VideoTypeRepository;
+import com.apposit.training.abelw.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +21,7 @@ import java.util.List;
 public class AdminService {
     public static String uploadDirectory  = System.getProperty("user.dir")+"/uploads";
     StringBuilder fileNames = new StringBuilder();
-    List<VideoByTypeDto> videos = new ArrayList<>();
+    List<Video> videos = new ArrayList<>();
 
     @Autowired
     VideoRepository videoRepository;
@@ -36,13 +33,16 @@ public class AdminService {
     VideoTypeRepository videoTypeRepository;
 
     @Autowired
+    RentedRepository rentedRepository;
+
+    @Autowired
     VideoCrud videoCrud;
 
     public void fetchData(){
         this.videos.clear();
-        videos.addAll(videoRepository.fetchAllVideos());
+        videos.addAll(videoRepository.findAll());
     }
-    public List<VideoByTypeDto> getVideos(){
+    public List<Video> getVideos(){
         return this.videos;
     }
 
@@ -80,7 +80,7 @@ public class AdminService {
     }
     public void deleteVideo(Long id){
         videoRepository.deleteById(id);
-        videos.removeIf(x -> x.getVideoId() == id);
+        videos.removeIf(video -> video.getId().equals(id));
     }
 
     public void deleteGenre(Long id){
@@ -96,7 +96,7 @@ public class AdminService {
         videoRepository.save(video);
     }
 
-    public List<VideoByTypeDto> getRentedVideos(){
-        return videoRepository.fetchDataByRented();
+    public List<Rented> getRentedVideos(){
+        return  rentedRepository.findAll();
     }
 }

@@ -36,14 +36,14 @@
                                     <tbody>
                                     <c:forEach items="${MY_CART}" var="cart" varStatus="loop">
                                     <tr>
-                                        <td>${cart.videoTitle}</td>
-                                        <td>${cart.videoGenre.title}</td>
-                                        <td>${cart.videoType.type_title}</td>
+                                        <td>${cart.title}</td>
+                                        <td>${cart.genre.title}</td>
+                                        <td>${cart.type.type_title}</td>
                                         <td>${cart.age}</td>
                                         <td>${cart.year}</td>
-                                        <td>${cart.price}</td>
+                                        <td>${cart.type.price}</td>
                                         <td align="center">
-                                                ${cart.onOfDays}
+                                                ${cart.noOfDays}
                                         </td>
                                         <td>
                                             <a href="/user/cart/delete/${loop.index}"><i class="mdi mdi-cart-remove" ></i></a>

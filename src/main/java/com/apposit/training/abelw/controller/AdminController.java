@@ -70,7 +70,7 @@ public class AdminController {
     @GetMapping("admin_add_type")
     public String addType(Model model) {
         model.addAttribute("type", new VideoType());
-        model.addAttribute("listType", userService.findAllType());
+        model.addAttribute("listType", userService.getAllType());
         return "addType";
     }
 
@@ -92,7 +92,7 @@ public class AdminController {
     @GetMapping("admin_add_genre")
     public String addGenre(Model model) {
         model.addAttribute("genre", new VideoGenre());
-        model.addAttribute("listGenre", userService.findAllGenre());
+        model.addAttribute("listGenre", userService.getAllGenre());
         return "addGenre";
     }
 

@@ -88,22 +88,22 @@
                                         <c:forEach items="${videos}" var="video">
                                             <tr>
                                                 <c:if test="${not empty video.image_uri}">
-                                                    <td><img src="/uploads/${video.image_uri}" alt="${video.videoTitle}" width="20" height="20"></td>
+                                                    <td><img src="/uploads/${video.image_uri}" alt="${video.title}" width="20" height="20"></td>
                                                 </c:if>
                                                 <c:if test="${empty video.image_uri}">
-                                                    <td><img src="/images/Avengers.jpg" alt="${video.videoTitle}" width="20" height="20"></td>
+                                                    <td><img src="/images/Avengers.jpg" alt="${video.title}" width="20" height="20"></td>
                                                 </c:if>
 
-                                                <td>${video.videoTitle}</td>
-                                                <td>${video.videoType.type_title}</td>
-                                                <td>${video.videoGenre.title}</td>
-                                                <td>${video.price}</td>
+                                                <td>${video.title}</td>
+                                                <td>${video.type.type_title}</td>
+                                                <td>${video.genre.title}</td>
+                                                <td>${video.type.price}</td>
                                                 <td>
-                                                    <a href="/admin/edit_video/${video.videoId}" class="btn btn-sm btn-outline-info">
+                                                    <a href="/admin/edit_video/${video.id}" class="btn btn-sm btn-outline-info">
                                                         <i class="mdi mdi-folder-edit"></i>
                                                         Edit
                                                     </a>
-                                                    <a href="/admin/delete_video/${video.videoId}" class="btn btn-sm btn-outline-danger">
+                                                    <a href="/admin/delete_video/${video.id}" class="btn btn-sm btn-outline-danger">
                                                         <i class="mdi mdi-delete"></i>
                                                         Delete
                                                     </a>

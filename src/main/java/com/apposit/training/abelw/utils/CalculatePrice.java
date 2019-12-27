@@ -1,6 +1,6 @@
 package com.apposit.training.abelw.utils;
 
-import com.apposit.training.abelw.data.VideoByTypeDto;
+import com.apposit.training.abelw.model.Video;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -15,15 +15,15 @@ public class CalculatePrice {
     Double ageValue = 0.0;
     int year = 0;
 
-    public Double calculatedPrice(List<VideoByTypeDto> cartValue){
-        for (VideoByTypeDto video :cartValue) {
-             this.rate = video.getPrice();
-             if (video.getVideoType().getType_title().equalsIgnoreCase("CHILDREN") && video.getAge() > 2){
+    public Double calculatedPrice(List<Video> cartValue){
+        for (Video video :cartValue) {
+             this.rate = video.getType().getPrice();
+             if (video.getType().getType_title().equalsIgnoreCase("CHILDREN") && video.getAge() > 2){
                  this.ageValue = (double) video.getAge() / 2;
-                 this.totalPrice = rate * video.getOnOfDays() + ageValue + this.totalPrice;
-             }else if(video.getVideoType().getType_title().equalsIgnoreCase("NEW") && video.getYear() > 0){
+                 this.totalPrice = rate * video.getNoOfDays() + ageValue + this.totalPrice;
+             }else if(video.getType().getType_title().equalsIgnoreCase("NEW") && video.getYear() > 0){
                 this.year = new Date().getYear() - video.getYear();
-                this.totalPrice = rate * video.getOnOfDays() - this.year + this.totalPrice;
+                this.totalPrice = rate * video.getNoOfDays() - this.year + this.totalPrice;
             }else {
                  this.totalPrice = rate * days + this.totalPrice;
              }

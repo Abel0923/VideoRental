@@ -1,8 +1,5 @@
 package com.apposit.training.abelw.data;
 
-import com.apposit.training.abelw.model.VideoGenre;
-import com.apposit.training.abelw.model.VideoType;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

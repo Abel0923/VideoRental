@@ -52,20 +52,23 @@
 
                                     <div class="card" style="width: 12rem;">
                                         <c:if test="${not empty video.image_uri}">
-                                            <td><img src="/uploads/${video.image_uri}" alt="${video.videoTitle}" style=" height: 14rem; width: 12rem"></td>
+                                            <td>
+                                                <img src="/uploads/${video.image_uri}"
+                                                     alt="${video.title}" style=" height: 14rem; width: 12rem"></td>
                                         </c:if>
                                         <c:if test="${empty video.image_uri}">
-                                            <td><img src="/images/Spider.jpg" alt="${video.videoTitle}" style=" height: 14rem; width: 12rem"></td>
+                                            <td><img src="/images/Spider.jpg"
+                                                     alt="${video.title}" style=" height: 14rem; width: 12rem"></td>
                                         </c:if>
 
                                         <div class="card-body">
-                                            <b >${video.videoTitle}</b>
+                                            <b >${video.title}</b>
                                             <p class="card-text card-small">
                                                 <small>
                                                 Description : <br>
                                                     &nbsp;&nbsp;
-                                                    Category : ${video.videoType.type_title}<br>&nbsp;&nbsp;
-                                                    Genre : ${video.videoGenre.title}<br>&nbsp;&nbsp;
+                                                    Category : ${video.type.type_title}<br>&nbsp;&nbsp;
+                                                    Genre : ${video.genre.title}<br>&nbsp;&nbsp;
 
                                                     <c:if test="${video.age >0}">
                                                         Max. Age : ${video.age}<br>&nbsp;&nbsp;
@@ -73,9 +76,9 @@
                                                     <c:if test="${video.year>0}">
                                                         Year : ${video.year}<br>&nbsp;&nbsp;
                                                     </c:if>
-                                                Price : ${video.price}<br>
+                                                Price : ${video.type.price}<br>
                                                 Days : <i class="mdi mdi-minus-circle sub" id="sub"></i>
-                                                <input type="number" id="days" value="${onOfDays}" min="1" max="3" class="noOfDays" disabled/>
+                                                <input type="number" id="days" value="${video.noOfDays}" min="1" max="3" class="noOfDays" disabled/>
                                                 <i class="mdi mdi-plus-circle add" id="add"></i>
 
                                                 </small>
@@ -84,7 +87,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <small class="text-muted">uploaded date : ${video.created_at}</small>
-                                            <a onclick="location.href=this.href+'/user/cart/${video.videoId}/'+onOfDays.val()">
+                                            <a onclick="addToCart(${video.id})">
                                                 <i class="mdi mdi-cart text-primary mx-0 float-right addToCart"></i>
                                             </a>
                                         </div>
@@ -104,13 +107,16 @@
 </div>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
-    var onOfDays;
+    var onOfDays=$('.noOfDays').prev().val();
 
-    $(document).ready(function () {
-        if ($('.noOfDays').val().empty() || $('.noOfDays').val().isEmpty || $('.noOfDays').val().eq(0)) {
-            onOfDays=$(this).prev().val(+ 1)
+    function addToCart(videoId){
+
+        if(onOfDays===""){
+            location.href='/user/cart/'+videoId+'/'+1;
+        }else{
+            location.href='/user/cart/'+videoId+'/'+onOfDays.val();
         }
-    });
+    }
 
     $('.addToCart').click(function () {
         if ($('.noOfDays').val().isEmpty) {
@@ -123,7 +129,7 @@
         }
     });
     $('.sub').click(function () {
-        if ($(this).next().val() > 1) {
+        if ($(this).next().val() > 0) {
             if ($(this).next().val() > 1) onOfDays = $(this).next().val(+$(this).next().val() - 1);
         }
     });
