@@ -5,7 +5,11 @@ import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
 import com.apposit.training.abelw.service.AdminService;
+import com.apposit.training.abelw.service.GoogleServiceHandler;
 import com.apposit.training.abelw.service.UserService;
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.util.store.FileDataStoreFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +17,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
+import java.io.InputStreamReader;
 
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
-
 
     @Autowired
     AdminService adminService;
@@ -26,10 +31,25 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    GoogleServiceHandler googleServiceHandler;
+
+    @PostConstruct
+    public void init() throws Exception{
+        GoogleClientSecrets secrets = GoogleClientSecrets.load(GoogleServiceHandler.JSON_FACTORY,
+                new InputStreamReader(googleServiceHandler.gdSecretKeys.getInputStream()));
+        googleServiceHandler.flow = new GoogleAuthorizationCodeFlow.Builder(GoogleServiceHandler.HTTP_TRANSPORT,
+                GoogleServiceHandler.JSON_FACTORY,
+                secrets,
+                GoogleServiceHandler.SCOPES)
+                .setDataStoreFactory(new FileDataStoreFactory(googleServiceHandler.credentialsFolder.getFile())).build();
+
+        adminService.fetchData();
+    }
 
     @GetMapping("/admin_home")
     public String adminHome(Model model) {
-        adminService.fetchData();
+
         model.addAttribute("noOfVideos", adminService.getVideos().size());
         model.addAttribute("videos", adminService.getVideos());
 
@@ -56,7 +76,7 @@ public class AdminController {
         }
 
         adminService.addVideos(videoData, file);
-        return "redirect:/admin/admin_list_videos";
+        return "redirect:/admin/admin_home";
     }
 
     // ---------------------------   Control on rented videos ----------------------- //
@@ -75,15 +95,16 @@ public class AdminController {
     }
 
     @PostMapping("admin_add_type")
-    public String saveType(@ModelAttribute("type") @Valid VideoType videoType, BindingResult result,Model model) {
+    public String saveType(@ModelAttribute("type") @Valid VideoType videoType, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "addType";
         }
         adminService.saveType(videoType);
         return "redirect:/admin/admin_home";
     }
+
     @GetMapping("admin_remove_type/{id}")
-    public String removeType(@PathVariable("id") Long id){
+    public String removeType(@PathVariable("id") Long id) {
         adminService.deleteType(id);
         return "redirect:/admin/admin_add_type";
     }
@@ -107,7 +128,7 @@ public class AdminController {
     }
 
     @GetMapping("admin_remove_genre/{id}")
-    public String removeGenre(@PathVariable("id") Long id){
+    public String removeGenre(@PathVariable("id") Long id) {
         adminService.deleteGenre(id);
         return "redirect:/admin/admin_add_genre";
     }
@@ -131,8 +152,4 @@ public class AdminController {
         adminService.saveEditedVideo(video);
         return "redirect:/admin/admin_home";
     }
-
-
-
-
 }

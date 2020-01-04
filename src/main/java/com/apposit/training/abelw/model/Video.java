@@ -50,6 +50,7 @@ public class Video implements Serializable {
 
     @Column(name = "noofdays")
     private int noOfDays;
+
     public Video() {
     }
 

@@ -97,7 +97,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-description">
-                                        <form:form class="forms-sample" method="post" action="/admin/add_video"
+                 <form:form class="forms-sample" method="post" action="/admin/add_video"
                                                    enctype="multipart/form-data"
                                                    modelAttribute="video">
                                     <div class="input-group">
@@ -114,7 +114,6 @@
                                         </div>
                                         <input id="file" name="file" type="file" class="form-control"/>
                                     </div>
-
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Type</span>
@@ -128,7 +127,6 @@
                                         <form:errors path="type_id" cssClass="text-warning"/>
 
                                     </div>
-
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Genre</span>
@@ -145,24 +143,23 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Max. Age</span>
                                         </div>
-                                        <form:input path="age" id="age" type="text" class="form-control"
+                                        <input path="age" id="age" type="text" class="form-control"
                                                     value="18" required="required"/>
-                                        <form:errors path="age" cssClass="text-warning"/>
+                                        <errors path="age" cssClass="text-warning"/>
                                     </div>
-                                    <div class="input-group" id="videoYear" style="display: none;">
+                                    <div class="input-group" id="videoYear">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">&nbsp;Year</span>
                                         </div>
-                                        <form:input path="year" id="year" type="date" class="form-control"
+                                        <input path="year" id="year" type="date" class="form-control"
                                                     required="required"/>
-                                        <form:errors path="year" cssClass="text-warning"/>
+                                        <errors path="year" cssClass="text-warning"/>
                                     </div>
 
-
-                                    <form:button value="Add Video" type="submit"
-                                                 class="btn btn-primary mr-2">Add Video</form:button>
+                                    <button type="submit"
+                                                 class="btn btn-primary mr-2">Add Video</button>
                                     <button class="btn btn-light">Cancel</button>
-                                    </form:form>
+                 </form:form>
                                     </p>
                                 </div>
                             </div>
@@ -179,11 +176,11 @@
         <script src="/js/template.js"></script>
         <script>
 
-            $('#videoType').change(function () {
-                $('#videoType').val() == 18 ? $('#videoAge').show() : $('#videoAge').hide();
-                $('#videoType').val() == 19 ? $('#videoYear').show() : $('#videoYear').hide();
+           $('#videoType').change(function () {
+               $('#videoType').val() == 18 ? $('#videoAge').show() : $('#videoAge').hide();
+               $('#videoType').val() == 19 ? $('#videoYear').show() : $('#videoYear').hide();
 
-            })
+           })
         </script>
 
 </body>

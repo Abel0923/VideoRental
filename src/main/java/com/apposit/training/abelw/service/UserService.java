@@ -5,6 +5,8 @@ import com.apposit.training.abelw.model.Video;
 import com.apposit.training.abelw.model.VideoGenre;
 import com.apposit.training.abelw.model.VideoType;
 import com.apposit.training.abelw.repository.*;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,8 @@ public class UserService {
 
     @Autowired
     RentedRepository rentedRepository;
-
+    @Autowired
+    GoogleServiceHandler googleServiceHandler;
 
     public void fetchData(){
         this.videos.clear();
@@ -44,6 +47,15 @@ public class UserService {
     }
 
     public List<Video> getVideos(){
+
+        FileList list;
+        List<File> result = new ArrayList<File>();
+        list = googleServiceHandler.getListOfImages(googleServiceHandler.drive);
+        result.addAll(list.getFiles());
+
+        for (int i=0; i<videos.size(); i++) {
+            googleServiceHandler.getImageLink(result, i,videos.get(i).getImage_uri(), videos);
+        }
         return this.videos;
     }
 

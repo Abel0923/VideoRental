@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta id="google_signin_client_id" content="807051135293-9n2lon7vtkkchigh4roie3901jc678us.apps.googleusercontent.com"/>
     <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href="/css/font-awesome.css" rel="stylesheet">

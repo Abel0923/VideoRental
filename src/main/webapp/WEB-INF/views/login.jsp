@@ -43,7 +43,7 @@
                         <c:url var="loginUrl" value="/login"/>
                         <form:form action="${loginUrl}" method="post" class="pt-3">
                             <div class="form-group">
-                                <input  type="text" class="form-control form-control-lg"
+                                <input type="text" class="form-control form-control-lg"
                                        id="username" name="username" placeholder="Username"
                                        required="required"/>
                             </div>
@@ -59,6 +59,13 @@
 
                     </div>
                 </div>
+            </div>
+
+            <div class="row w-100 mx-0">
+                <a href="/googlesignin">
+                    <img src="/images/google-sign-in.png">
+
+                </a>
             </div>
         </div>
     </div>

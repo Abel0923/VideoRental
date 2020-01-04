@@ -32,7 +32,6 @@ public class VideoData implements Serializable {
     @Column(name = "age")
     private int age;
 
-    @Min(value = 1960, message = "Year can not be less than a year of 1960")
     @Column(name = "year")
     private int year;
 

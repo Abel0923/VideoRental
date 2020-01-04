@@ -53,7 +53,7 @@
                                     <div class="card" style="width: 12rem;">
                                         <c:if test="${not empty video.image_uri}">
                                             <td>
-                                                <img src="/uploads/${video.image_uri}"
+                                                <img src="${video.image_uri}"
                                                      alt="${video.title}" style=" height: 14rem; width: 12rem"></td>
                                         </c:if>
                                         <c:if test="${empty video.image_uri}">
